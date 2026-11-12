@@ -102,4 +102,4 @@ If this policy changes, the same URL and the effective date are updated.
 
 ### Contact
 
-privacy@example.com
+parksiho@gmail.com
