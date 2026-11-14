@@ -73,6 +73,8 @@
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
   }
+  /* Japanese breaks between characters; keep-all is for Korean only */
+  html[lang="ja"] body{word-break:normal}
   body::before{
     content:"";
     position:fixed;
@@ -467,6 +469,7 @@
   }
   .step-row h4{margin:0 0 4px;font-size:13.5px;font-weight:650;letter-spacing:-.01em}
   .step-row p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.62}
+  .step-row>div{min-width:0}
 
   .info-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:16px;margin-top:16px}
   .caution{
