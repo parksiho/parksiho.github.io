@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lion Park Apps — 현장을 위한 안드로이드 앱</title>
+<meta name="description" content="현장 계측과 자동화를 다루는 개인 개발자 Lion Park의 앱. USB-C 이더넷으로 계측기 Modbus TCP를 점검하는 모드버스 체커를 소개합니다.">
+<meta name="theme-color" content="#070B12">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lion Park Apps">
+<meta property="og:title" content="Lion Park Apps — 현장을 위한 안드로이드 앱">
+<meta property="og:description" content="USB-C 이더넷으로 계측기 Modbus TCP를 점검하는 모드버스 체커. 한국어 · 영어 · 일본어.">
+<meta property="og:url" content="https://parksiho.github.io/">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://parksiho.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230B1220'/%3E%3Cpath d='M9 21V11h2.6l3.4 5.2L18.4 11H21v10h-2.3v-6.1L15.8 19h-1.6l-2.9-4.1V21z' fill='%232DD4BF'/%3E%3Ccircle cx='24' cy='21' r='1.6' fill='%232DD4BF'/%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Modbus Checker",
+  "alternateName": "모드버스 체커",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Android",
+  "url": "https://play.google.com/store/apps/details?id=com.emsfield.fieldtester",
+  "sameAs": "https://play.google.com/store/apps/details?id=com.emsfield.fieldtester",
+  "description": "USB-C 이더넷 어댑터로 전력량계, PLC, 게이트웨이의 Modbus TCP를 점검하는 안드로이드 앱. ARP, Ping, TCP 확인과 FC01-FC16 읽기/쓰기, 폴링과 원시 HEX 로그를 제공합니다.",
+  "inLanguage": ["ko", "en", "ja"],
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+  "author": { "@type": "Person", "name": "Lion Park" },
+  "creator": { "@type": "Person", "name": "Lion Park" }
+}
+</script>
+<style>
+  /* ---------------------------------------------------------------
+     Lion Park Apps — single-file landing page
+     Structure: header / hero / catalog(#apps) / spotlight / about / footer
+     Content is driven by STR, CATEGORIES and APPS at the bottom of <body>.
+     --------------------------------------------------------------- */
+  :root{
+    --bg:#070B12;
+    --bg-soft:#0A1120;
+    --panel:rgba(255,255,255,.035);
+    --panel-2:rgba(255,255,255,.055);
+    --line:rgba(255,255,255,.09);
+    --line-strong:rgba(255,255,255,.16);
+    --text:#E9EFF8;
+    --muted:#93A3BA;
+    --muted-2:#6C7C93;
+    --accent:#2DD4BF;
+    --accent-soft:rgba(45,212,191,.14);
+    --accent-line:rgba(45,212,191,.34);
+    --amber:#F5B843;
+    --radius:18px;
+    --radius-sm:12px;
+    --max:1160px;
+    --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.65;
+    letter-spacing:-.01em;
+    word-break:keep-all;
+    overflow-wrap:break-word;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    background:
+      radial-gradient(900px 520px at 78% -8%,rgba(45,212,191,.13),transparent 62%),
+      radial-gradient(760px 480px at 4% 4%,rgba(88,120,255,.10),transparent 60%),
+      linear-gradient(180deg,#070B12 0%,#070B12 62%,#080D17 100%);
+  }
+  body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    opacity:.5;
+    background-image:
+      linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(1100px 620px at 60% 0%,#000 0%,transparent 78%);
+    -webkit-mask-image:radial-gradient(1100px 620px at 60% 0%,#000 0%,transparent 78%);
+  }
+  .page{position:relative;z-index:1}
+  a{color:inherit;text-decoration:none}
+  img,svg{max-width:100%}
+  ::selection{background:rgba(45,212,191,.28);color:#fff}
+  .wrap{width:100%;max-width:var(--max);margin:0 auto;padding:0 24px}
+  .skip{position:absolute;left:-9999px;top:0}
+  .skip:focus{left:16px;top:16px;z-index:99;background:#101A2B;border:1px solid var(--line-strong);padding:10px 16px;border-radius:10px;color:var(--text)}
+  html[lang="ja"] body{
+    font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+  }
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+  /* ---------- header ---------- */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:rgba(7,11,18,.72);
+    backdrop-filter:blur(14px) saturate(140%);
+    -webkit-backdrop-filter:blur(14px) saturate(140%);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;gap:20px;height:66px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:700;letter-spacing:-.02em;font-size:15.5px}
+  .brand .mark{
+    width:30px;height:30px;border-radius:9px;
+    display:grid;place-items:center;
+    background:linear-gradient(150deg,rgba(45,212,191,.22),rgba(45,212,191,.04));
+    border:1px solid var(--accent-line);
+    box-shadow:0 0 0 4px rgba(45,212,191,.05);
+  }
+  .brand .mark svg{display:block}
+  .brand small{display:block;font-weight:500;font-size:10.5px;letter-spacing:.16em;color:var(--muted-2);text-transform:uppercase;line-height:1.2;margin-top:1px}
+  .brand .name{line-height:1.15}
+  nav.links{display:flex;align-items:center;gap:4px;margin-left:auto}
+  nav.links a{
+    padding:8px 13px;border-radius:9px;font-size:14px;color:var(--muted);
+    transition:color .18s,background .18s;
+  }
+  nav.links a:hover{color:var(--text);background:var(--panel-2)}
+  .lang{
+    display:flex;align-items:center;gap:2px;padding:3px;margin-left:6px;
+    border:1px solid var(--line);border-radius:11px;background:rgba(255,255,255,.03);
+  }
+  .lang button{
+    appearance:none;border:0;background:transparent;color:var(--muted-2);
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;
+    padding:6px 9px;border-radius:8px;cursor:pointer;transition:.18s;
+  }
+  .lang button:hover{color:var(--text)}
+  .lang button[aria-pressed="true"]{background:rgba(45,212,191,.16);color:#C8FFF6;box-shadow:inset 0 0 0 1px var(--accent-line)}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    padding:12px 20px;border-radius:12px;font-size:14.5px;font-weight:600;
+    border:1px solid transparent;transition:transform .16s,background .18s,border-color .18s,box-shadow .18s;
+    cursor:pointer;white-space:nowrap;
+  }
+  .btn:active{transform:translateY(1px)}
+  .btn-primary{
+    background:linear-gradient(180deg,#3BE0CB,#22BDA8);
+    color:#04201C;
+    box-shadow:0 8px 26px -10px rgba(45,212,191,.75),inset 0 1px 0 rgba(255,255,255,.35);
+  }
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 12px 32px -10px rgba(45,212,191,.85),inset 0 1px 0 rgba(255,255,255,.4)}
+  .btn-ghost{background:rgba(255,255,255,.04);border-color:var(--line);color:var(--text)}
+  .btn-ghost:hover{background:rgba(255,255,255,.075);border-color:var(--line-strong)}
+  .btn svg{flex:none}
+
+  /* ---------- hero ---------- */
+  .hero{padding:76px 0 4px}
+  .hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:52px;align-items:center}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+    color:#8FEADF;
+    padding:7px 13px;border:1px solid var(--accent-line);border-radius:999px;
+    background:var(--accent-soft);
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(45,212,191,.16)}
+  h1{
+    font-size:clamp(2.05rem,4.15vw,3.32rem);
+    line-height:1.16;letter-spacing:-.032em;font-weight:750;
+    margin:24px 0 0;
+  }
+  h1 .accent{
+    background:linear-gradient(96deg,#5EEAD4,#8FEADF 45%,#BFD8FF);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .lead{margin:20px 0 0;font-size:16.5px;color:var(--muted);max-width:52ch}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+  .chip{
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:12.5px;color:var(--muted);
+    padding:6px 11px;border:1px solid var(--line);border-radius:999px;
+    background:rgba(255,255,255,.028);
+  }
+  .chip .d{width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:.85}
+
+  /* ---------- phone mock ---------- */
+  .stage{position:relative;display:flex;justify-content:center;padding:8px 0}
+  .stage::before{
+    content:"";position:absolute;inset:-6% 0;z-index:-1;
+    background:radial-gradient(closest-side,rgba(45,212,191,.20),transparent 72%);
+    filter:blur(10px);
+  }
+  .phone{
+    position:relative;width:296px;max-width:100%;
+    border-radius:42px;padding:11px;
+    background:linear-gradient(160deg,#1B2637,#0C1320 55%,#131E2D);
+    border:1px solid rgba(255,255,255,.14);
+    box-shadow:
+      0 40px 80px -30px rgba(0,0,0,.9),
+      0 0 0 1px rgba(0,0,0,.5),
+      inset 0 1px 0 rgba(255,255,255,.14);
+  }
+  .phone .screen{
+    position:relative;border-radius:32px;overflow:hidden;
+    background:linear-gradient(180deg,#081020,#060B14 70%);
+    border:1px solid rgba(255,255,255,.06);
+    padding:12px 13px 15px;
+    font-family:var(--mono);
+  }
+  .phone .notch{
+    width:64px;height:5px;border-radius:99px;background:rgba(255,255,255,.18);
+    margin:2px auto 10px;
+  }
+  .app-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:11px}
+  .app-name{font-family:var(--sans);font-size:11.5px;font-weight:700;letter-spacing:-.01em;color:#DCE7F5;line-height:1.25}
+  .app-name span{display:block;font-size:8.5px;font-weight:500;font-family:var(--mono);letter-spacing:.13em;color:#5E7189;margin-top:2px}
+  .conn{
+    display:inline-flex;align-items:center;gap:5px;
+    font-size:8.5px;letter-spacing:.05em;color:#7FF3E2;
+    padding:4px 7px;border-radius:99px;background:rgba(45,212,191,.12);
+    border:1px solid var(--accent-line);white-space:nowrap;
+  }
+  .conn i{width:5px;height:5px;border-radius:50%;background:#2DD4BF;animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(45,212,191,.5)}50%{opacity:.55;box-shadow:0 0 0 4px rgba(45,212,191,0)}}
+  .mock-card{
+    border:1px solid rgba(255,255,255,.08);border-radius:10px;
+    background:rgba(255,255,255,.035);padding:8px 9px;margin-bottom:8px;
+  }
+  .mock-row{display:flex;align-items:center;justify-content:space-between;font-size:9.5px;color:#7E90A8;padding:2.5px 0}
+  .mock-row b{color:#D6E3F2;font-weight:500}
+  .mock-row .ok{color:#5CE8B8}
+  .mock-label{font-size:8px;letter-spacing:.15em;color:#54677F;text-transform:uppercase;margin-bottom:4px}
+  .vals{display:grid;gap:0}
+  .val{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:6px;padding:4px 0;font-size:9.5px;border-top:1px solid rgba(255,255,255,.05)}
+  .val:first-child{border-top:0}
+  .val .addr{color:#5F738C}
+  .log{display:grid;gap:3px;font-size:8.5px;color:#6E8AA3;line-height:1.5}
+  .log .t{color:#46586E}
+  .log .tx{color:#8FD8FF}
+  .log .rx{color:#7FE0B4}
+  .banner-slot{
+    margin-top:9px;height:26px;border-radius:5px;
+    border:1px dashed rgba(255,255,255,.12);
+    display:grid;place-items:center;
+    font-size:7.5px;letter-spacing:.22em;color:#43536A;
+  }
+  .float{
+    position:absolute;z-index:2;
+    display:flex;align-items:center;gap:8px;
+    padding:9px 12px;border-radius:12px;
+    background:rgba(12,20,32,.9);
+    border:1px solid var(--line-strong);
+    box-shadow:0 18px 40px -22px rgba(0,0,0,.9);
+    backdrop-filter:blur(8px);
+    font-size:11.5px;color:var(--muted);
+  }
+  .float b{color:var(--text);font-weight:600;font-family:var(--mono);font-size:11.5px}
+  .float .ic{width:22px;height:22px;border-radius:7px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);flex:none}
+  .float.f1{top:16%;right:-18px}
+  .float.f2{bottom:3%;left:-24px}
+  @media (prefers-reduced-motion:reduce){
+    .conn i{animation:none}
+    html{scroll-behavior:auto}
+    *{transition:none!important}
+  }
+
+  /* ---------- sections ---------- */
+  section{scroll-margin-top:84px}
+  .sec{padding:64px 0}
+  .sec-head{max-width:64ch}
+  .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+    color:#7FD8CD;margin-bottom:14px;
+  }
+  .kicker::before{content:"";width:18px;height:1px;background:var(--accent-line)}
+  h2{font-size:clamp(1.5rem,2.7vw,2.05rem);line-height:1.28;letter-spacing:-.028em;margin:0;font-weight:720}
+  .sec-lead{margin:14px 0 0;color:var(--muted);font-size:15.5px;max-width:60ch}
+
+  /* ---------- catalog ---------- */
+  .catalog-bar{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    margin:34px 0 22px;
+    padding-bottom:16px;border-bottom:1px solid var(--line);
+  }
+  .tabs{display:flex;gap:6px;flex-wrap:wrap}
+  .tab{
+    appearance:none;cursor:pointer;
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--sans);font-size:13.5px;font-weight:550;
+    color:var(--muted);
+    padding:8px 14px;border-radius:10px;
+    border:1px solid var(--line);background:rgba(255,255,255,.025);
+    transition:.18s;
+  }
+  .tab .n{font-family:var(--mono);font-size:10.5px;color:var(--muted-2);padding:1px 5px;border-radius:5px;background:rgba(255,255,255,.05)}
+  .tab:hover{color:var(--text);border-color:var(--line-strong)}
+  .tab[aria-pressed="true"]{
+    color:#C9FFF7;border-color:var(--accent-line);
+    background:rgba(45,212,191,.12);
+  }
+  .tab[aria-pressed="true"] .n{color:#8FEADF;background:rgba(45,212,191,.16)}
+  .filter-note{margin-left:auto;font-size:12px;color:var(--muted-2);display:flex;align-items:center;gap:7px}
+  .grid-apps{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:18px}
+  .app-card{
+    position:relative;display:flex;flex-direction:column;
+    padding:24px;border-radius:var(--radius);
+    border:1px solid var(--line);
+    background:linear-gradient(168deg,rgba(255,255,255,.055),rgba(255,255,255,.018) 62%);
+    transition:border-color .2s,transform .2s,box-shadow .2s;
+    overflow:hidden;
+  }
+  .app-card::after{
+    content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .25s;
+    background:radial-gradient(420px 200px at 12% -12%,rgba(45,212,191,.16),transparent 70%);
+  }
+  .app-card:hover{border-color:var(--line-strong);transform:translateY(-2px);box-shadow:0 24px 48px -28px rgba(0,0,0,.9)}
+  .app-card:hover::after{opacity:1}
+  .app-card.app-soon{
+    border-style:dashed;background:rgba(255,255,255,.014);
+    align-items:flex-start;justify-content:center;min-height:220px;color:var(--muted-2);
+  }
+  .app-card.app-soon:hover{transform:none;box-shadow:none}
+  .app-card.app-soon h3{font-size:14.5px;color:var(--muted);margin:0 0 6px;font-weight:600}
+  .app-card.app-soon p{margin:0;font-size:13px;line-height:1.6;max-width:34ch}
+  .app-card.app-soon .plus{
+    width:30px;height:30px;border-radius:9px;border:1px dashed var(--line-strong);
+    display:grid;place-items:center;margin-bottom:14px;color:var(--muted-2);font-family:var(--mono);
+  }
+  .card-top{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px}
+  .icon-tile{
+    width:56px;height:56px;border-radius:15px;flex:none;
+    display:grid;place-items:center;
+    background:linear-gradient(155deg,rgba(45,212,191,.24),rgba(45,212,191,.05));
+    border:1px solid var(--accent-line);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.16);
+  }
+  .icon-tile svg{display:block}
+  .card-name{font-size:17.5px;font-weight:700;letter-spacing:-.02em;margin:0;line-height:1.3}
+  .card-sub{font-size:12.5px;color:var(--muted);margin:3px 0 0}
+  .badge{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-family:var(--mono);
+    color:#9BE9DE;background:rgba(45,212,191,.1);
+    border:1px solid var(--accent-line);border-radius:6px;
+    padding:3px 7px;margin-bottom:10px;
+  }
+  .app-card > .badge{align-self:flex-start}
+  .card-desc{margin:0 0 18px;font-size:14px;color:var(--muted);line-height:1.68}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+  .tag{font-family:var(--mono);font-size:10.5px;color:#93A9C2;padding:3px 8px;border-radius:6px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.06)}
+  .card-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:auto}
+  .link-arrow{
+    display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);
+    padding:9px 4px;transition:color .18s,gap .18s;
+  }
+  .link-arrow:hover{color:var(--text);gap:9px}
+  .btn-sm{padding:9px 14px;font-size:13px;border-radius:10px}
+  .card-policy{
+    display:flex;align-items:center;gap:6px;
+    margin-top:16px;padding-top:14px;border-top:1px solid var(--line);
+    font-size:12px;color:var(--muted-2);transition:color .18s;
+  }
+  .card-policy:hover{color:var(--muted)}
+
+  /* ---------- spotlight ---------- */
+  .spot{padding:26px 0 8px}
+  .spot-panel{
+    position:relative;
+    border:1px solid var(--line);border-radius:26px;
+    background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
+    padding:44px;
+    overflow:hidden;
+  }
+  .spot-panel::before{
+    content:"";position:absolute;top:-40%;right:-10%;width:620px;height:520px;pointer-events:none;
+    background:radial-gradient(closest-side,rgba(45,212,191,.14),transparent 70%);
+  }
+  .spot-head{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center;position:relative}
+  .spot-title{font-size:clamp(1.42rem,2.5vw,1.95rem);margin:10px 0 0;line-height:1.3;letter-spacing:-.028em;font-weight:720}
+  .spot-lead{color:var(--muted);font-size:15px;margin:14px 0 0;max-width:46ch}
+  .spot-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+  .mini-phone{
+    justify-self:center;width:212px;border-radius:30px;padding:8px;
+    background:linear-gradient(160deg,#1A2434,#0B111C);
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:0 30px 60px -30px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.12);
+  }
+  .mini-phone .screen{border-radius:23px;background:#070D17;border:1px solid rgba(255,255,255,.05);padding:9px;font-family:var(--mono)}
+  .subhead{display:flex;align-items:center;gap:12px;margin:52px 0 22px}
+  .subhead h3{font-size:15px;font-weight:650;letter-spacing:-.01em;margin:0;color:#DDE7F4}
+  .subhead .rule{flex:1;height:1px;background:var(--line)}
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .feat{
+    padding:20px;border-radius:14px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.024);
+    transition:border-color .2s,background .2s;
+  }
+  .feat:hover{border-color:var(--accent-line);background:rgba(45,212,191,.05)}
+  .feat .ic{
+    width:34px;height:34px;border-radius:10px;display:grid;place-items:center;margin-bottom:13px;
+    background:var(--accent-soft);border:1px solid var(--accent-line);color:var(--accent);
+  }
+  .feat h4{margin:0 0 7px;font-size:14px;font-weight:650;letter-spacing:-.01em}
+  .feat p{margin:0;font-size:13px;color:var(--muted);line-height:1.62}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;counter-reset:s}
+  .step{
+    position:relative;padding:20px 20px 20px 20px;border-radius:14px;
+    border:1px solid var(--line);background:rgba(255,255,255,.02);
+  }
+  .step .num{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:#7FD8CD;
+    display:flex;align-items:center;gap:9px;margin-bottom:10px;
+  }
+  .step .num::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--accent-line),transparent)}
+  .step h4{margin:0 0 6px;font-size:14px;font-weight:650}
+  .step p{margin:0;font-size:13px;color:var(--muted);line-height:1.62}
+
+  .info-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:16px;margin-top:16px}
+  .caution{
+    border:1px solid rgba(245,184,67,.26);border-radius:14px;
+    background:linear-gradient(180deg,rgba(245,184,67,.075),rgba(245,184,67,.02));
+    padding:22px;
+  }
+  .caution h4{margin:0 0 14px;font-size:13px;letter-spacing:.02em;color:#F3C879;display:flex;align-items:center;gap:8px}
+  .caution ul{margin:0;padding:0;list-style:none;display:grid;gap:11px}
+  .caution li{position:relative;padding-left:20px;font-size:13px;color:#C6B99F;line-height:1.6}
+  .caution li::before{
+    content:"";position:absolute;left:2px;top:8px;width:6px;height:6px;
+    border-radius:2px;background:var(--amber);opacity:.8;
+  }
+  .specs{
+    border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.02);
+    padding:20px 22px;
+  }
+  .specs h4{margin:0 0 12px;font-size:13px;letter-spacing:.02em;color:#B9C8DB}
+  .spec-row{
+    display:grid;grid-template-columns:118px 1fr;gap:14px;
+    padding:9px 0;border-top:1px solid rgba(255,255,255,.055);font-size:13px;
+  }
+  .spec-row:first-of-type{border-top:0}
+  .spec-row dt{margin:0;color:var(--muted-2)}
+  .spec-row dd{margin:0;color:#D9E4F1}
+
+  /* ---------- about ---------- */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+  .about-card{
+    border:1px solid var(--line);border-radius:var(--radius);
+    background:linear-gradient(168deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
+    padding:28px;
+  }
+  .who{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+  .who .av{
+    width:46px;height:46px;border-radius:50%;flex:none;display:grid;place-items:center;
+    background:linear-gradient(150deg,rgba(45,212,191,.3),rgba(88,120,255,.14));
+    border:1px solid var(--line-strong);font-family:var(--mono);font-size:14px;color:#DFFBF6;font-weight:600;
+  }
+  .who h3{margin:0;font-size:15.5px;font-weight:680}
+  .who p{margin:2px 0 0;font-size:12px;color:var(--muted-2);font-family:var(--mono);letter-spacing:.04em}
+  .about-card p{margin:0 0 12px;font-size:14px;color:var(--muted);line-height:1.72}
+  .about-card p:last-child{margin-bottom:0}
+  .contact-list{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:10px}
+  .contact-list li{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--muted)}
+  .contact-list .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-2);min-width:64px}
+  .contact-list a{color:#BFE9E1;border-bottom:1px solid rgba(191,233,225,.28)}
+  .contact-list a:hover{color:#fff;border-color:#fff}
+
+  /* ---------- footer ---------- */
+  footer.site{border-top:1px solid var(--line);padding:36px 0 44px;margin-top:24px}
+  .foot{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
+  .foot-left{display:flex;flex-direction:column;gap:6px}
+  .foot-brand{display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:600}
+  .foot-note{font-size:12px;color:var(--muted-2);max-width:52ch;line-height:1.6}
+  .foot-links{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12.5px;color:var(--muted)}
+  .foot-links a:hover{color:var(--text)}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:1000px){
+    .hero-grid{grid-template-columns:1fr;gap:40px}
+    .stage{order:2;padding-top:4px}
+    .hero{padding-top:52px}
+    .spot-head{grid-template-columns:1fr;gap:28px}
+    .mini-phone{display:none}
+    .feat-grid{grid-template-columns:repeat(2,1fr)}
+    .steps{grid-template-columns:1fr}
+    .info-grid{grid-template-columns:1fr}
+    .about-grid{grid-template-columns:1fr}
+    .float.f1{right:0}
+    .float.f2{left:0}
+  }
+  @media (max-width:760px){
+    .wrap{padding:0 18px}
+    nav.links a{display:none}
+    .nav{height:60px;gap:12px}
+    .brand small{display:none}
+    .hero{padding:40px 0 18px}
+    h1{font-size:clamp(1.85rem,7.4vw,2.4rem)}
+    .lead{font-size:15px}
+    .sec{padding:56px 0}
+    .spot-panel{padding:26px 20px;border-radius:20px}
+    .feat-grid{grid-template-columns:1fr}
+    .filter-note{margin-left:0;width:100%}
+    .grid-apps{grid-template-columns:1fr}
+    .phone{width:262px}
+    .float{font-size:10.5px;padding:7px 10px}
+    .float b{font-size:10.5px}
+    .float.f1{top:auto;bottom:-10px;right:14px}
+    .float.f2{display:none}
+    .hero-cta .btn{flex:1 1 auto;justify-content:center}
+    .foot{flex-direction:column;align-items:flex-start}
+    .spec-row{grid-template-columns:96px 1fr;gap:10px;font-size:12.5px}
+  }
+  @media (max-width:400px){
+    .lang button{padding:6px 7px;font-size:11px}
+    .brand{font-size:14px}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#apps" data-i18n="skip">본문으로 건너뛰기</a>
+
+<div class="page">
+  <!-- ================= HEADER ================= -->
+  <header class="site">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="Lion Park Apps">
+        <span class="mark" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 32 32" fill="none">
+            <path d="M8 22V10h3l3.9 5.9L18.9 10H22v12h-2.6v-7.3L16 21h-1.7l-3.4-6.3V22H8Z" fill="#5EEAD4"/>
+            <circle cx="25" cy="21" r="2" fill="#2DD4BF"/>
+          </svg>
+        </span>
+        <span class="name">Lion Park <span style="color:#7C8DA4;font-weight:500">Apps</span><small>Field tools for engineers</small></span>
+      </a>
+      <nav class="links" aria-label="Main">
+        <a href="#apps" data-i18n="nav.apps">앱</a>
+        <a href="#modbus-checker" data-i18n="nav.features">기능</a>
+        <a href="#about" data-i18n="nav.about">소개</a>
+        <a href="#contact" data-i18n="nav.contact">문의</a>
+      </nav>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="ko" aria-pressed="true">KO</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        <button type="button" data-lang="ja" aria-pressed="false">JA</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow"><span class="dot" aria-hidden="true"></span><span data-i18n="hero.eyebrow">Independent Android studio</span></span>
+          <h1 data-i18n-html="hero.title">현장에서 필요한 도구를,<br><span class="accent">폰 하나로.</span></h1>
+          <p class="lead" data-i18n="hero.lead">USB-C 이더넷 어댑터로 전력량계, PLC, 게이트웨이의 Modbus TCP를 점검하는 안드로이드 앱을 만듭니다. LTE·Wi-Fi와 장비망을 섞지 않고, 현장에서 값을 바로 읽고 씁니다.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.emsfield.fieldtester" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.4c-.3.3-.5.8-.5 1.4v16.4c0 .6.2 1.1.5 1.4l.1.1 9.2-9.2v-.2L3.7 2.3l-.1.1Zm10.4 10.4 2.9-2.9-11.4-6.5c-.4-.2-.8-.2-1.1-.1l9.6 9.5Zm0 .4-9.6 9.5c.3.1.7.1 1.1-.1l11.4-6.5-2.9-2.9Zm1 .6 3.4 1.9c1-.6 1-2 0-2.6l-3.4-1.9-.9.9.9.9Z"/></svg>
+              <span data-i18n="hero.cta1">Google Play에서 받기</span>
+            </a>
+            <a class="btn btn-ghost" href="#modbus-checker">
+              <span data-i18n="hero.cta2">기능 살펴보기</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+          <div class="hero-meta">
+            <span class="chip"><span class="d" aria-hidden="true"></span><span data-i18n="hero.meta1">한국 · 미국 · 일본 출시</span></span>
+            <span class="chip"><span class="d" aria-hidden="true"></span><span data-i18n="hero.meta2">한국어 · 영어 · 일본어</span></span>
+            <span class="chip"><span class="d" aria-hidden="true"></span><span data-i18n="hero.meta3">무료 · 광고 포함</span></span>
+          </div>
+        </div>
+
+        <!-- phone mock -->
+        <div class="stage">
+          <div class="float f1" aria-hidden="true">
+            <span class="ic"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5Z" stroke-linejoin="round"/></svg></span>
+            <span data-i18n="mock.latency">응답</span>&nbsp;<b>12 ms</b>
+          </div>
+          <div class="float f2" aria-hidden="true">
+            <span class="ic"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 7h18M3 12h18M3 17h18" stroke-linecap="round"/></svg></span>
+            <span data-i18n="mock.frames">프레임</span>&nbsp;<b>FC03 ×10</b>
+          </div>
+          <div class="phone" role="img" aria-label="Modbus Checker app screen">
+            <div class="screen">
+              <div class="notch" aria-hidden="true"></div>
+              <div class="app-top">
+                <div class="app-name">Modbus Checker<span>USB ETHERNET</span></div>
+                <span class="conn"><i aria-hidden="true"></i>CDC-ECM</span>
+              </div>
+
+              <div class="mock-card">
+                <div class="mock-label">ADAPTER</div>
+                <div class="mock-row"><span>VID:PID</span><b>0B95:772B</b></div>
+                <div class="mock-row"><span>LINK</span><b class="ok">UP · 100M</b></div>
+              </div>
+
+              <div class="mock-card">
+                <div class="mock-label">NETWORK</div>
+                <div class="mock-row"><span>IP</span><b>192.168.10.1/24</b></div>
+                <div class="mock-row"><span>GATEWAY</span><b>192.168.10.1</b></div>
+                <div class="mock-row"><span>DUP CHECK</span><b class="ok">clear</b></div>
+              </div>
+
+              <div class="mock-card">
+                <div class="mock-label">FC03 · UNIT 1 · 40001</div>
+                <div class="vals">
+                  <div class="val"><span class="addr">40001</span><span>INT16</span><b style="color:#D6E3F2">1234</b></div>
+                  <div class="val"><span class="addr">40002</span><span>FLOAT32</span><b style="color:#D6E3F2">220.4</b></div>
+                  <div class="val"><span class="addr">40003</span><span>UINT32</span><b style="color:#D6E3F2">914</b></div>
+                </div>
+              </div>
+
+              <div class="mock-card" style="margin-bottom:0">
+                <div class="mock-label">HEX LOG</div>
+                <div class="log">
+                  <div><span class="t">12:04:31</span> <span class="tx">TX 01 03 00 00 00 0A</span></div>
+                  <div><span class="t">12:04:31</span> <span class="rx">RX 01 03 14 04 D2 …</span></div>
+                </div>
+              </div>
+              <div class="banner-slot" aria-hidden="true">AD BANNER</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CATALOG ================= -->
+    <section class="sec" id="apps">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="kicker" data-i18n="apps.kicker">Apps</span>
+          <h2 data-i18n="apps.title">앱 카탈로그</h2>
+          <p class="sec-lead" data-i18n="apps.lead">카테고리별로 앱을 소개합니다. 지금은 현장 계측 도구 하나부터, 앞으로 늘어날 앱도 같은 목록에 쌓입니다.</p>
+        </div>
+
+        <div class="catalog-bar">
+          <div class="tabs" id="tabs" role="group" aria-label="Categories"></div>
+          <span class="filter-note"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1" stroke-linecap="round"/></svg><span data-i18n="apps.filterNote">카테고리는 앱이 늘어나면 함께 추가됩니다.</span></span>
+        </div>
+
+        <div class="grid-apps" id="appGrid"></div>
+      </div>
+    </section>
+
+    <!-- ================= SPOTLIGHT: MODBUS CHECKER ================= -->
+    <section class="spot" id="modbus-checker">
+      <div class="wrap">
+        <div class="spot-panel">
+          <div class="spot-head">
+            <div>
+              <span class="badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M4 12h4l2-6 4 12 2-6h4" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="spot.badge">Spotlight</span></span>
+              <h2 class="spot-title" data-i18n="spot.title">모드버스 체커 — USB 이더넷 계측기 점검</h2>
+              <p class="spot-lead" data-i18n="spot.lead">노트북과 케이블을 꺼내지 않아도 됩니다. 폰과 USB-C 이더넷 어댑터로 장비에 붙어 링크를 확인하고, 레지스터를 읽고, 필요하면 씁니다.</p>
+              <div class="spot-cta">
+                <a class="btn btn-primary btn-sm" href="https://play.google.com/store/apps/details?id=com.emsfield.fieldtester" target="_blank" rel="noopener"><span data-i18n="card.play">Google Play</span></a>
+                <a class="btn btn-ghost btn-sm" href="/mc-privacy-policy.md"><span data-i18n="card.privacy">개인정보처리방침</span></a>
+              </div>
+            </div>
+            <div class="mini-phone" aria-hidden="true">
+              <div class="screen">
+                <div class="mock-row" style="padding-top:0"><span>UNIT</span><b>1</b></div>
+                <div class="mock-row"><span>PORT</span><b>502</b></div>
+                <div class="mock-row"><span>FC</span><b>03 / 06</b></div>
+                <div class="mock-row"><span>BYTE</span><b>DCBA</b></div>
+                <div class="mock-row"><span>POLL</span><b>1.0 s</b></div>
+                <div class="mock-row"><span>LOSS</span><b class="ok">0 / 428</b></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="subhead"><h3 data-i18n="spot.featuresTitle">할 수 있는 일</h3><span class="rule" aria-hidden="true"></span></div>
+          <div class="feat-grid" id="featGrid"></div>
+
+          <div class="subhead"><h3 data-i18n="spot.howTitle">현장에서 쓰는 순서</h3><span class="rule" aria-hidden="true"></span></div>
+          <div class="steps" id="stepGrid"></div>
+
+          <div class="info-grid">
+            <div class="caution">
+              <h4><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 3 2.5 20h19L12 3Z" stroke-linejoin="round"/><path d="M12 9v5M12 17h.01" stroke-linecap="round"/></svg><span data-i18n="spot.cautionsTitle">알아 둘 점</span></h4>
+              <ul id="cautionList"></ul>
+            </div>
+            <div class="specs">
+              <h4 data-i18n="spot.specsTitle">한눈에 보기</h4>
+              <dl style="margin:0" id="specList"></dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section class="sec" id="about">
+      <div class="wrap">
+        <div class="sec-head" style="margin-bottom:26px">
+          <span class="kicker" data-i18n="about.kicker">About</span>
+          <h2 data-i18n="about.title">만든 사람</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-card">
+            <div class="who">
+              <span class="av" aria-hidden="true">LP</span>
+              <div>
+                <h3>Lion Park <span style="color:var(--muted-2);font-weight:500;font-size:13px">· 박시호</span></h3>
+                <p data-i18n="about.role">Independent Android developer</p>
+              </div>
+            </div>
+            <p data-i18n="about.body1">현장 계측과 빌딩 자동화를 다루며, 그 자리에서 쓰던 불편을 앱으로 풉니다. 설명서 없이도 쓸 수 있고, 필요한 기능만 남기는 편입니다.</p>
+            <p data-i18n="about.body2">모드버스 체커는 한국어, 영어, 일본어에서 같은 기능을 제공합니다. 현장에 따라 언어가 달라도 같은 방식으로 점검할 수 있게 했습니다.</p>
+          </div>
+          <div class="about-card" id="contact">
+            <h3 style="margin:0 0 6px;font-size:15.5px;font-weight:680" data-i18n="about.contactTitle">문의</h3>
+            <p data-i18n="about.contactBody">버그, 기능 제안, 번역 오류 모두 메일로 받습니다. 앱 관련 문의는 앱 이름과 폰 기종을 함께 적어 주시면 빨리 확인할 수 있습니다.</p>
+            <ul class="contact-list">
+              <li><span class="k" data-i18n="about.kEmail">Email</span><a href="mailto:parksiho@gmail.com">parksiho@gmail.com</a></li>
+              <li><span class="k" data-i18n="about.kStore">Store</span><a href="https://play.google.com/store/apps/details?id=com.emsfield.fieldtester" target="_blank" rel="noopener">Google Play · Modbus Checker</a></li>
+              <li><span class="k" data-i18n="about.kPolicy">Privacy</span><a href="/mc-privacy-policy.md" data-i18n="about.policyLink">개인정보처리방침</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site">
+    <div class="wrap foot">
+      <div class="foot-left">
+        <span class="foot-brand">
+          <span class="mark" style="width:22px;height:22px;border-radius:7px;display:grid;place-items:center;background:rgba(45,212,191,.14);border:1px solid var(--accent-line)">
+            <svg width="12" height="12" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M8 22V10h3l3.9 5.9L18.9 10H22v12h-2.6v-7.3L16 21h-1.7l-3.4-6.3V22H8Z" fill="#5EEAD4"/></svg>
+          </span>
+          Lion Park Apps
+        </span>
+        <p class="foot-note" data-i18n="footer.note">이 사이트는 Lion Park이 만든 앱을 소개하는 페이지입니다. 앱의 개인정보처리방침은 별도 문서로 제공됩니다.</p>
+        <span class="foot-note" style="font-family:var(--mono);font-size:11.5px;letter-spacing:.04em" data-i18n="footer.rights">© 2026 Lion Park. All rights reserved.</span>
+      </div>
+      <div class="foot-links">
+        <a href="#apps" data-i18n="nav.apps">앱</a>
+        <a href="#modbus-checker" data-i18n="nav.features">기능</a>
+        <a href="/mc-privacy-policy.md" data-i18n="card.privacy">개인정보처리방침</a>
+        <a href="mailto:parksiho@gmail.com" data-i18n="nav.contact">문의</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+/* =====================================================================
+   1) LANGUAGES
+   Each key holds one short string per language. Add a key, translate it
+   in all three, and any element with data-i18n="key" picks it up.
+   ===================================================================== */
+const STR = {
+  ko: {
+    "skip": "본문으로 건너뛰기",
+    "nav.apps": "앱",
+    "nav.features": "기능",
+    "nav.about": "소개",
+    "nav.contact": "문의",
+    "hero.eyebrow": "Independent Android studio",
+    "hero.title": "현장에서 필요한 도구를,<br><span class=\"accent\">폰 하나로.</span>",
+    "hero.lead": "USB-C 이더넷 어댑터로 전력량계, PLC, 게이트웨이의 Modbus TCP를 점검하는 안드로이드 앱을 만듭니다. LTE·Wi-Fi와 장비망을 섞지 않고, 현장에서 값을 바로 읽고 씁니다.",
+    "hero.cta1": "Google Play에서 받기",
+    "hero.cta2": "기능 살펴보기",
+    "hero.meta1": "한국 · 미국 · 일본 출시",
+    "hero.meta2": "한국어 · 영어 · 일본어",
+    "hero.meta3": "무료 · 광고 포함",
+    "mock.latency": "응답",
+    "mock.frames": "프레임",
+    "apps.kicker": "Apps",
+    "apps.title": "앱 카탈로그",
+    "apps.lead": "카테고리별로 앱을 소개합니다. 지금은 현장 계측 도구 하나부터, 앞으로 늘어날 앱도 같은 목록에 쌓입니다.",
+    "apps.filterNote": "카테고리는 앱이 늘어나면 함께 추가됩니다.",
+    "apps.all": "전체",
+    "apps.soonTitle": "다음 앱을 준비하고 있습니다",
+    "apps.soonBody": "새 앱이 준비되면 이 카테고리에 함께 표시됩니다.",
+    "spot.badge": "Spotlight",
+    "spot.title": "모드버스 체커 — USB 이더넷 계측기 점검",
+    "spot.lead": "노트북과 케이블을 꺼내지 않아도 됩니다. 폰과 USB-C 이더넷 어댑터로 장비에 붙어 링크를 확인하고, 레지스터를 읽고, 필요하면 씁니다.",
+    "spot.featuresTitle": "할 수 있는 일",
+    "spot.howTitle": "현장에서 쓰는 순서",
+    "spot.cautionsTitle": "알아 둘 점",
+    "spot.specsTitle": "한눈에 보기",
+    "card.play": "Google Play",
+    "card.privacy": "개인정보처리방침",
+    "card.detail": "자세히 보기",
+    "about.kicker": "About",
+    "about.title": "만든 사람",
+    "about.role": "Independent Android developer",
+    "about.body1": "현장 계측과 빌딩 자동화를 다루며, 그 자리에서 쓰던 불편을 앱으로 풉니다. 설명서 없이도 쓸 수 있고, 필요한 기능만 남기는 편입니다.",
+    "about.body2": "모드버스 체커는 한국어, 영어, 일본어에서 같은 기능을 제공합니다. 현장에 따라 언어가 달라도 같은 방식으로 점검할 수 있게 했습니다.",
+    "about.contactTitle": "문의",
+    "about.contactBody": "버그, 기능 제안, 번역 오류 모두 메일로 받습니다. 앱 관련 문의는 앱 이름과 폰 기종을 함께 적어 주시면 빨리 확인할 수 있습니다.",
+    "about.kEmail": "Email",
+    "about.kStore": "Store",
+    "about.kPolicy": "Privacy",
+    "about.policyLink": "개인정보처리방침",
+    "footer.note": "이 사이트는 Lion Park이 만든 앱을 소개하는 페이지입니다. 앱의 개인정보처리방침은 별도 문서로 제공됩니다.",
+    "footer.rights": "© 2026 Lion Park. All rights reserved.",
+    "meta.title": "Lion Park Apps — 현장을 위한 안드로이드 앱",
+    "meta.desc": "현장 계측과 자동화를 다루는 개인 개발자 Lion Park의 앱. USB-C 이더넷으로 계측기 Modbus TCP를 점검하는 모드버스 체커를 소개합니다."
+  },
+  en: {
+    "skip": "Skip to content",
+    "nav.apps": "Apps",
+    "nav.features": "Features",
+    "nav.about": "About",
+    "nav.contact": "Contact",
+    "hero.eyebrow": "Independent Android studio",
+    "hero.title": "The tools the field needs,<br><span class=\"accent\">in one phone.</span>",
+    "hero.lead": "Android apps that check Modbus TCP on meters, PLCs and gateways through a USB-C Ethernet adapter. Your LTE and Wi-Fi never mix with the equipment network, and the values are right there on site.",
+    "hero.cta1": "Get it on Google Play",
+    "hero.cta2": "See what it does",
+    "hero.meta1": "Available in KR · US · JP",
+    "hero.meta2": "Korean · English · Japanese",
+    "hero.meta3": "Free · ad-supported",
+    "mock.latency": "Response",
+    "mock.frames": "Frames",
+    "apps.kicker": "Apps",
+    "apps.title": "App catalog",
+    "apps.lead": "Apps grouped by what they do. Today there is one field tool; new apps will land in the same list under their own category.",
+    "apps.filterNote": "Categories appear here as the catalog grows.",
+    "apps.all": "All",
+    "apps.soonTitle": "The next app is in the works",
+    "apps.soonBody": "New apps will show up in this category as they are ready.",
+    "spot.badge": "Spotlight",
+    "spot.title": "Modbus Checker — USB Ethernet instrument check",
+    "spot.lead": "No laptop to open, no extra cable. Attach the phone through a USB-C Ethernet adapter, confirm the link, read the registers, and write only when you mean to.",
+    "spot.featuresTitle": "What it does",
+    "spot.howTitle": "How it is used on site",
+    "spot.cautionsTitle": "Good to know",
+    "spot.specsTitle": "At a glance",
+    "card.play": "Google Play",
+    "card.privacy": "Privacy Policy",
+    "card.detail": "Details",
+    "about.kicker": "About",
+    "about.title": "Who builds it",
+    "about.role": "Independent Android developer",
+    "about.body1": "Working with field instruments and building automation, I turn the friction I meet on site into small apps. They should work without a manual and keep only the features a job needs.",
+    "about.body2": "Modbus Checker offers the same feature set in Korean, English and Japanese, so a site works the same way whatever the language.",
+    "about.contactTitle": "Contact",
+    "about.contactBody": "Bugs, feature requests and translation fixes all go to email. For app issues, the app name and your phone model help me check quickly.",
+    "about.kEmail": "Email",
+    "about.kStore": "Store",
+    "about.kPolicy": "Privacy",
+    "about.policyLink": "Privacy Policy",
+    "footer.note": "This site introduces apps built by Lion Park. Each app's privacy policy is provided as a separate document.",
+    "footer.rights": "© 2026 Lion Park. All rights reserved.",
+    "meta.title": "Lion Park Apps — Android tools for the field",
+    "meta.desc": "Apps by Lion Park, an independent developer working with field instrumentation. Modbus Checker checks Modbus TCP through a USB-C Ethernet adapter."
+  },
+  ja: {
+    "skip": "本文へ移動",
+    "nav.apps": "アプリ",
+    "nav.features": "機能",
+    "nav.about": "紹介",
+    "nav.contact": "お問い合わせ",
+    "hero.eyebrow": "Independent Android studio",
+    "hero.title": "現場に必要な道具を、<br><span class=\"accent\">スマホ一台で。</span>",
+    "hero.lead": "USB-C イーサネットアダプターで電力量計・PLC・ゲートウェイの Modbus TCP を点検する Android アプリを作っています。LTE・Wi-Fi と計測ネットワークを混在させず、現場でそのまま値を読み書きできます。",
+    "hero.cta1": "Google Play で入手",
+    "hero.cta2": "機能を見る",
+    "hero.meta1": "韓国・米国・日本で提供",
+    "hero.meta2": "韓国語・英語・日本語",
+    "hero.meta3": "無料・広告あり",
+    "mock.latency": "応答",
+    "mock.frames": "フレーム",
+    "apps.kicker": "Apps",
+    "apps.title": "アプリカタログ",
+    "apps.lead": "カテゴリごとにアプリを紹介します。今は現場計測ツールが 1 本。これから増えるアプリも同じ一覧に並びます。",
+    "apps.filterNote": "カテゴリはアプリが増えると追加されます。",
+    "apps.all": "すべて",
+    "apps.soonTitle": "次のアプリを準備中です",
+    "apps.soonBody": "新しいアプリが用意でき次第、このカテゴリに表示されます。",
+    "spot.badge": "Spotlight",
+    "spot.title": "Modbus Checker — USB イーサネット計測器チェック",
+    "spot.lead": "ノート PC も余分なケーブルも要りません。スマホと USB-C イーサネットアダプターで機器につなぎ、リンクを確認し、レジスタを読む。書き込みは必要なときだけ。",
+    "spot.featuresTitle": "できること",
+    "spot.howTitle": "現場での使い方",
+    "spot.cautionsTitle": "ご注意",
+    "spot.specsTitle": "概要",
+    "card.play": "Google Play",
+    "card.privacy": "プライバシーポリシー",
+    "card.detail": "詳細",
+    "about.kicker": "About",
+    "about.title": "作っている人",
+    "about.role": "Independent Android developer",
+    "about.body1": "フィールド計測とビル設備の自動化に携わり、現場で感じた不便をアプリで解消しています。説明書なしで使えること、必要な機能だけを残すことを大切にしています。",
+    "about.body2": "Modbus Checker は韓国語・英語・日本語で同じ機能を提供します。言語が違う現場でも同じ手順で点検できます。",
+    "about.contactTitle": "お問い合わせ",
+    "about.contactBody": "不具合、機能の要望、翻訳の誤りはメールで受け付けています。アプリの件はアプリ名と端末の機種を添えていただけると確認が早くなります。",
+    "about.kEmail": "Email",
+    "about.kStore": "Store",
+    "about.kPolicy": "Privacy",
+    "about.policyLink": "プライバシーポリシー",
+    "footer.note": "このサイトは Lion Park が制作したアプリの紹介ページです。各アプリのプライバシーポリシーは別途ご用意しています。",
+    "footer.rights": "© 2026 Lion Park. All rights reserved.",
+    "meta.title": "Lion Park Apps — 現場のための Android アプリ",
+    "meta.desc": "フィールド計測に携わる個人開発者 Lion Park のアプリ。USB-C イーサネットで計測器の Modbus TCP を点検する Modbus Checker を紹介します。"
+  }
+};
+
+/* =====================================================================
+   2) CATEGORIES
+   Add one line here when a new kind of app appears.
+   id is used by APPS.category. Order here is the order of the filter tabs.
+   ===================================================================== */
+const CATEGORIES = [
+  { id: "field", label: { ko: "계측 · 필드 유틸리티", en: "Measurement & Field Utilities", ja: "計測・フィールドツール" } }
+];
+
+/* =====================================================================
+   3) APPS
+   Copy one object, change the fields, done. Empty category = a "soon" tile.
+   ===================================================================== */
+const APPS = [
+  {
+    id: "modbus-checker",
+    category: "field",
+    badge: { ko: "현장 도구", en: "Field tool", ja: "フィールドツール" },
+    name: { ko: "모드버스 체커", en: "Modbus Checker", ja: "Modbus Checker" },
+    sub: { ko: "USB 이더넷 계측기 점검", en: "USB Ethernet instrument check", ja: "USB イーサネット計測器チェック" },
+    desc: {
+      ko: "USB-C 이더넷 어댑터로 전력량계, PLC, 게이트웨이의 Modbus TCP를 점검합니다. ARP·Ping·TCP 확인부터 FC01–FC16 읽기·쓰기, 폴링과 원시 HEX 로그까지 한 화면에서 봅니다.",
+      en: "Checks Modbus TCP on meters, PLCs and gateways through a USB-C Ethernet adapter: ARP, ping and TCP checks, FC01–FC16 read and write, polling and raw HEX logs on one screen.",
+      ja: "USB-C イーサネットアダプターで電力量計・PLC・ゲートウェイの Modbus TCP を点検。ARP・Ping・TCP の確認から FC01–FC16 の読み書き、ポーリング、生の HEX ログまで 1 画面で確認できます。"
+    },
+    tags: ["Android", "Modbus TCP", "CDC-ECM", "KO · EN · JA"],
+    play: "https://play.google.com/store/apps/details?id=com.emsfield.fieldtester",
+    policy: "/mc-privacy-policy.md",
+    icon: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#5EEAD4" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="12" rx="2"/><path d="M8 20h8M12 16v4M8 8h3M8 12h6"/><circle cx="16.5" cy="8" r="1" fill="#2DD4BF" stroke="none"/></svg>'
+  }
+];
+
+/* =====================================================================
+   4) SPOTLIGHT CONTENT (the Modbus Checker detail section)
+   ===================================================================== */
+const FEATURES = [
+  {
+    icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><circle cx="12" cy="12" r="4"/></svg>',
+    title: { ko: "분리된 점검용 IP", en: "An isolated check address", ja: "点検専用の IP" },
+    body: {
+      ko: "앱 IP·프리픽스·게이트웨이를 직접 정하고 IP 충돌을 검사합니다. 이 주소는 안드로이드 네트워크 설정에 등록되지 않아, 폰의 LTE·Wi-Fi와 장비망이 섞이지 않습니다.",
+      en: "Set the app's IP, prefix and gateway, and check for duplicates. The address is never registered in Android's network settings, so LTE and Wi-Fi never mix with the equipment network.",
+      ja: "アプリ内で IP・プレフィックス・ゲートウェイを設定し、IP の重複を確認します。このアドレスは Android のネットワーク設定に登録されないため、LTE・Wi-Fi と計測ネットワークが混ざりません。"
+    }
+  },
+  {
+    icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h3l2-5 4 10 2-5h5"/></svg>',
+    title: { ko: "연결을 먼저 확인", en: "Confirm the link first", ja: "まず接続を確認" },
+    body: {
+      ko: "ARP, Ping, TCP 포트 열림으로 장비가 보이는지 먼저 확인합니다. 안 보이면 레지스터를 읽기 전에 원인을 좁힐 수 있습니다.",
+      en: "ARP, ping and open TCP ports show whether the device is reachable. If it is not, you narrow the cause before touching a register.",
+      ja: "ARP・Ping・TCP ポートの開放で、機器が見えているかを先に確認します。見えない場合は、レジスタを読む前に原因を切り分けられます。"
+    }
+  },
+  {
+    icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h10M4 12h16M4 17h7"/><circle cx="17" cy="7" r="2"/><circle cx="14" cy="17" r="2"/></svg>',
+    title: { ko: "Modbus TCP 읽기와 쓰기", en: "Modbus TCP read and write", ja: "Modbus TCP の読み書き" },
+    body: {
+      ko: "FC01, 02, 03, 04, 05, 06, 15, 16을 지원합니다. 코일, 디스크리트 입력, 홀딩 레지스터, 인풋 레지스터를 같은 화면에서 다룹니다.",
+      en: "FC01, 02, 03, 04, 05, 06, 15 and 16 are supported: coils, discrete inputs, holding registers and input registers in one place.",
+      ja: "FC01・02・03・04・05・06・15・16 に対応。コイル、ディスクリート入力、保持レジスタ、入力レジスタを同じ画面で扱えます。"
+    }
+  },
+  {
+    icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7H6a4 4 0 0 0 0 8h3M15 7h3a4 4 0 0 1 0 8h-3M8 12h8"/></svg>',
+    title: { ko: "값 해석", en: "Readable values", ja: "値の解釈" },
+    body: {
+      ko: "INT16, UINT16, INT32, UINT32, FLOAT32, FLOAT64로 값을 읽고, 바이트 순서 ABCD·CDAB·BADC·DCBA를 바꿔 확인합니다.",
+      en: "Read numbers as INT16, UINT16, INT32, UINT32, FLOAT32 or FLOAT64, and switch the byte order between ABCD, CDAB, BADC and DCBA.",
+      ja: "INT16・UINT16・INT32・UINT32・FLOAT32・FLOAT64 で値を読み、バイト順は ABCD・CDAB・BADC・DCBA を切り替えて確認できます。"
+    }
+  },
+  {
+    icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 3 5-7 4 4"/><path d="M3 21h18"/></svg>',
+    title: { ko: "주기 폴링과 원시 로그", en: "Polling and raw logs", ja: "周期ポーリングと生ログ" },
+    body: {
+      ko: "정한 주기로 값을 다시 읽고 응답 시간을 봅니다. 문제가 생기면 원시 HEX 로그로 프레임을 그대로 확인합니다.",
+      en: "Poll on an interval and watch the response time. When something looks wrong, the raw HEX log shows the frames exactly as they went out and came back.",
+      ja: "決めた周期で再取得し、応答時間を確認します。異常時は生の HEX ログでフレームをそのまま確認できます。"
+    }
+  },
+  {
+    icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="10" height="12" rx="2"/><path d="M13 10h4a3 3 0 0 1 3 3v1a3 3 0 0 0 3 3M7 10v4"/></svg>',
+    title: { ko: "어댑터 확인", en: "Adapter diagnostics", ja: "アダプターの確認" },
+    body: {
+      ko: "USB VID:PID와 CDC-ECM 지원 여부를 보여 줍니다. 연결이 안 되는 이유가 케이블인지 칩인지 먼저 구분할 수 있습니다.",
+      en: "USB VID:PID and CDC-ECM support are shown, so you can tell whether the cable or the chip is the reason it will not connect.",
+      ja: "USB VID:PID と CDC-ECM 対応かを表示。つながらない原因がケーブルかチップかを先に切り分けられます。"
+    }
+  }
+];
+
+const STEPS = [
+  {
+    title: { ko: "어댑터 연결", en: "Plug in the adapter", ja: "アダプターを接続" },
+    body: {
+      ko: "USB-C 이더넷(CDC-ECM) 어댑터를 폰에 연결합니다. USB 호스트(OTG)를 지원하는 폰이 필요합니다.",
+      en: "Connect a USB-C Ethernet (CDC-ECM) adapter. The phone needs USB host (OTG) support.",
+      ja: "USB-C イーサネット（CDC-ECM）アダプターをスマホに接続します。USB ホスト（OTG）対応の端末が必要です。"
+    }
+  },
+  {
+    title: { ko: "점검 주소 설정", en: "Set the check address", ja: "点検用アドレスを設定" },
+    body: {
+      ko: "앱 안에서 IP·프리픽스·게이트웨이를 정하고 IP 충돌을 확인합니다. 폰의 인터넷 설정은 건드리지 않습니다.",
+      en: "Choose IP, prefix and gateway inside the app and check for duplicates. The phone's own internet settings stay untouched.",
+      ja: "アプリ内で IP・プレフィックス・ゲートウェイを決め、IP の重複を確認します。スマホ自体のインターネット設定には触れません。"
+    }
+  },
+  {
+    title: { ko: "장비 점검", en: "Check the device", ja: "機器を点検" },
+    body: {
+      ko: "ARP·Ping·TCP로 연결을 확인한 뒤 Unit ID와 주소로 레지스터를 읽고, 필요하면 씁니다.",
+      en: "Confirm the link with ARP, ping and TCP, then read registers by unit ID and address — and write when you mean to.",
+      ja: "ARP・Ping・TCP で接続を確認し、ユニット ID とアドレスでレジスタを読み書きします。"
+    }
+  }
+];
+
+const CAUTIONS = [
+  {
+    ko: "쓰기(FC05, 06, 15, 16)는 장비 레지스터를 실제로 바꿉니다. 주소와 값을 확인한 뒤 실행하세요.",
+    en: "Writes (FC05, 06, 15, 16) change the device's registers for real. Check the address and the value first.",
+    ja: "書き込み（FC05・06・15・16）は機器のレジスタを実際に変更します。アドレスと値を確認してから実行してください。"
+  },
+  {
+    ko: "USB 드라이버는 CDC-ECM 어댑터만 지원합니다. ECM이 없는 칩은 연결되지 않을 수 있습니다.",
+    en: "Only CDC-ECM adapters are supported. A chip without ECM may not connect.",
+    ja: "USB ドライバーは CDC-ECM アダプターのみ対応です。ECM 非対応のチップは接続できない場合があります。"
+  },
+  {
+    ko: "화면 하단에 배너 광고가 나올 수 있습니다. 광고 통신은 LTE·Wi-Fi로만 나가고 USB 장비망으로는 나가지 않습니다.",
+    en: "A banner ad may appear at the bottom of the screen. Ad traffic uses LTE or Wi-Fi only, never the USB equipment network.",
+    ja: "画面下部にバナー広告が表示されることがあります。広告通信は LTE・Wi-Fi のみで、USB の計測ネットワークには流れません。"
+  }
+];
+
+const SPECS = [
+  { k: { ko: "플랫폼", en: "Platform", ja: "プラットフォーム" }, v: { ko: "Android", en: "Android", ja: "Android" } },
+  { k: { ko: "출시 국가", en: "Available in", ja: "提供地域" }, v: { ko: "대한민국 · 미국 · 일본", en: "Korea · United States · Japan", ja: "韓国・米国・日本" } },
+  { k: { ko: "지원 언어", en: "Languages", ja: "対応言語" }, v: { ko: "한국어 · 영어 · 일본어", en: "Korean · English · Japanese", ja: "韓国語・英語・日本語" } },
+  { k: { ko: "프로토콜", en: "Protocol", ja: "プロトコル" }, v: { ko: "Modbus TCP (FC01–FC16)", en: "Modbus TCP (FC01–FC16)", ja: "Modbus TCP（FC01–FC16）" } },
+  { k: { ko: "어댑터", en: "Adapter", ja: "アダプター" }, v: { ko: "USB-C 이더넷 (CDC-ECM)", en: "USB-C Ethernet (CDC-ECM)", ja: "USB-C イーサネット（CDC-ECM）" } },
+  { k: { ko: "가격", en: "Price", ja: "価格" }, v: { ko: "무료 · 광고 포함", en: "Free · ad-supported", ja: "無料・広告あり" } }
+];
+
+/* =====================================================================
+   5) RENDERING + LANGUAGE SWITCH
+   ===================================================================== */
+const $ = (sel, root) => (root || document).querySelector(sel);
+const $$ = (sel, root) => Array.from((root || document).querySelectorAll(sel));
+const pick = (obj, lang) => (obj && (obj[lang] !== undefined ? obj[lang] : obj.ko));
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+let lang = "ko";
+let activeCat = "all";
+
+function detectLang() {
+  try {
+    const saved = localStorage.getItem("lp-lang");
+    if (saved && STR[saved]) return saved;
+  } catch (e) {}
+  const nav = (navigator.language || "ko").toLowerCase();
+  if (nav.startsWith("ja")) return "ja";
+  if (nav.startsWith("ko")) return "ko";
+  return nav.startsWith("en") ? "en" : "ko";
+}
+
+function t(key) {
+  const table = STR[lang] || STR.ko;
+  return table[key] !== undefined ? table[key] : (STR.ko[key] !== undefined ? STR.ko[key] : key);
+}
+
+function applyI18n() {
+  $$("[data-i18n]").forEach((el) => { el.textContent = t(el.getAttribute("data-i18n")); });
+  $$("[data-i18n-html]").forEach((el) => { el.innerHTML = t(el.getAttribute("data-i18n-html")); });
+  document.documentElement.setAttribute("lang", lang);
+  document.title = t("meta.title");
+  const desc = $('meta[name="description"]');
+  if (desc) desc.setAttribute("content", t("meta.desc"));
+  $$(".lang button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
+}
+
+function renderTabs() {
+  const host = $("#tabs");
+  const counts = {};
+  APPS.forEach((a) => { counts[a.category] = (counts[a.category] || 0) + 1; });
+  const items = [{ id: "all", label: t("apps.all"), n: APPS.length }]
+    .concat(CATEGORIES.map((c) => ({ id: c.id, label: pick(c.label, lang), n: counts[c.id] || 0 })));
+  host.innerHTML = items.map((it) =>
+    '<button type="button" class="tab" role="button" data-cat="' + it.id + '" aria-pressed="' + (activeCat === it.id) + '">' +
+      esc(it.label) + '<span class="n">' + it.n + '</span></button>'
+  ).join("");
+  $$(".tab", host).forEach((btn) => {
+    btn.addEventListener("click", () => {
+      activeCat = btn.dataset.cat;
+      $$(".tab", host).forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.cat === activeCat)));
+      renderApps();
+    });
+  });
+}
+
+function renderApps() {
+  const host = $("#appGrid");
+  const list = APPS.filter((a) => activeCat === "all" || a.category === activeCat);
+  const cards = list.map((a) =>
+    '<article class="app-card">' +
+      '<div class="badge">' + esc(pick(a.badge, lang)) + '</div>' +
+      '<div class="card-top">' +
+        '<div class="icon-tile" aria-hidden="true">' + a.icon + '</div>' +
+        '<div><h3 class="card-name">' + esc(pick(a.name, lang)) + '</h3>' +
+        '<p class="card-sub">' + esc(pick(a.sub, lang)) + '</p></div>' +
+      '</div>' +
+      '<p class="card-desc">' + esc(pick(a.desc, lang)) + '</p>' +
+      '<div class="tags">' + a.tags.map((tag) => '<span class="tag">' + esc(tag) + '</span>').join("") + '</div>' +
+      '<div class="card-actions">' +
+        '<a class="btn btn-primary btn-sm" href="' + a.play + '" target="_blank" rel="noopener">' +
+          '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.4c-.3.3-.5.8-.5 1.4v16.4c0 .6.2 1.1.5 1.4l.1.1 9.2-9.2v-.2L3.7 2.3l-.1.1Zm10.4 10.4 2.9-2.9-11.4-6.5c-.4-.2-.8-.2-1.1-.1l9.6 9.5Zm0 .4-9.6 9.5c.3.1.7.1 1.1-.1l11.4-6.5-2.9-2.9Zm1 .6 3.4 1.9c1-.6 1-2 0-2.6l-3.4-1.9-.9.9.9.9Z"/></svg>' +
+          esc(t("card.play")) + '</a>' +
+        '<a class="link-arrow" href="#' + a.id + '">' + esc(t("card.detail")) + ' →</a>' +
+      '</div>' +
+      '<a class="card-policy" href="' + a.policy + '">' + esc(t("card.privacy")) + '</a>' +
+    '</article>'
+  );
+  if (activeCat === "all") {
+    cards.push(
+      '<article class="app-card app-soon">' +
+        '<span class="plus" aria-hidden="true">+</span>' +
+        '<h3>' + esc(t("apps.soonTitle")) + '</h3>' +
+        '<p>' + esc(t("apps.soonBody")) + '</p>' +
+      '</article>'
+    );
+  }
+  host.innerHTML = cards.join("");
+}
+
+function renderSpotlight() {
+  $("#featGrid").innerHTML = FEATURES.map((f) =>
+    '<div class="feat"><div class="ic" aria-hidden="true">' + f.icon + '</div>' +
+    '<h4>' + esc(pick(f.title, lang)) + '</h4><p>' + esc(pick(f.body, lang)) + '</p></div>'
+  ).join("");
+  $("#stepGrid").innerHTML = STEPS.map((s, i) =>
+    '<div class="step"><div class="num">' + String(i + 1).padStart(2, "0") + '</div>' +
+    '<h4>' + esc(pick(s.title, lang)) + '</h4><p>' + esc(pick(s.body, lang)) + '</p></div>'
+  ).join("");
+  $("#cautionList").innerHTML = CAUTIONS.map((c) => "<li>" + esc(pick(c, lang)) + "</li>").join("");
+  $("#specList").innerHTML = SPECS.map((s) =>
+    '<div class="spec-row"><dt>' + esc(pick(s.k, lang)) + '</dt><dd>' + esc(pick(s.v, lang)) + '</dd></div>'
+  ).join("");
+}
+
+function renderAll() {
+  applyI18n();
+  renderTabs();
+  renderApps();
+  renderSpotlight();
+}
+
+function setLang(next) {
+  if (!STR[next]) return;
+  lang = next;
+  try { localStorage.setItem("lp-lang", next); } catch (e) {}
+  renderAll();
+}
+
+$$(".lang button").forEach((btn) => {
+  btn.addEventListener("click", () => setLang(btn.dataset.lang));
+});
+
+lang = detectLang();
+renderAll();
+</script>
+</body>
+</html>
