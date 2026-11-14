@@ -423,10 +423,34 @@
     background:rgba(255,255,255,.02);
   }
   .shot picture{display:block}
-  .shot img{display:block;width:100%;height:auto;aspect-ratio:1600/718;object-fit:cover;background:#0A101B}
+  .shot img{display:block;width:100%;height:auto;aspect-ratio:1600/989;object-fit:contain;background:#0A101B}
   .shot figcaption{
     padding:12px 15px;border-top:1px solid var(--line);
     font-size:12px;color:var(--muted-2);line-height:1.6;
+  }
+  .adapter-card{
+    margin-top:16px;border-radius:14px;overflow:hidden;
+    border:1px solid rgba(45,212,191,.28);
+    background:linear-gradient(160deg,rgba(45,212,191,.07),rgba(255,255,255,.014) 62%);
+    display:grid;grid-template-columns:.86fr 1.14fr;align-items:stretch;
+  }
+  .adapter-shot{
+    margin:0;display:flex;align-items:center;background:#0A101B;
+    border-right:1px solid var(--line);
+  }
+  .adapter-shot img{display:block;width:100%;height:auto}
+  .adapter-body{padding:22px 24px;display:flex;flex-direction:column;justify-content:center;gap:10px}
+  .adapter-badge{
+    align-self:flex-start;display:inline-flex;align-items:center;gap:6px;
+    font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    color:#8FEADF;padding:4px 9px;border-radius:999px;
+    border:1px solid var(--accent-line);background:var(--accent-soft);
+  }
+  .adapter-body h4{margin:0;font-size:15px;font-weight:680;letter-spacing:-.01em;color:#EAF3FB;line-height:1.45}
+  .adapter-body p{margin:0;font-size:13px;color:var(--muted);line-height:1.68}
+  .adapter-body .adapter-note{
+    margin-top:2px;padding-top:10px;border-top:1px solid rgba(255,255,255,.07);
+    font-size:11.5px;color:var(--muted-2);line-height:1.6;
   }
   .steps-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:9px}
   .step-row{
@@ -512,7 +536,9 @@
     .feat-grid{grid-template-columns:repeat(2,1fr)}
     .how-grid{grid-template-columns:1fr}
     .steps-list{grid-template-columns:1fr}
-    .shot img{aspect-ratio:1200/752}
+    .adapter-card{grid-template-columns:1fr}
+    .adapter-shot{border-right:0;border-bottom:1px solid var(--line)}
+    .shot img{aspect-ratio:1200/742}
     .info-grid{grid-template-columns:1fr}
     .about-grid{grid-template-columns:1fr}
     .float.f1{right:0}
@@ -716,6 +742,21 @@
             <ol class="steps-list" id="stepGrid"></ol>
           </div>
 
+          <div class="adapter-card">
+            <figure class="adapter-shot">
+              <img src="assets/modbus-checker-adapter-closeup.jpg" loading="lazy" decoding="async"
+                   width="1200" height="970"
+                   alt="태블릿에 연결된 USB-C to RJ45 이더넷 컨버터와 랜선 연결부를 확대한 사진"
+                   data-i18n-alt="spot.adapterAlt">
+            </figure>
+            <div class="adapter-body">
+              <span class="adapter-badge" data-i18n="spot.adapterBadge">필수 준비물</span>
+              <h4 data-i18n="spot.adapterTitle">USB-C to RJ45 이더넷 컨버터는 따로 챙겨야 합니다</h4>
+              <p data-i18n="spot.adapterBody">모드버스 체커는 앱만으로 장비에 붙지 않습니다. CDC-ECM을 지원하는 USB-C to RJ45 이더넷 컨버터를 별도로 준비해 폰이나 태블릿에 연결하고, 여기에 현장 랜선을 꽂아야 통신이 됩니다.</p>
+              <p class="adapter-note" data-i18n="spot.adapterNote">※ 사진에 나온 컨버터는 연결 예시이며, 특정 제품 추천은 아닙니다.</p>
+            </div>
+          </div>
+
           <div class="info-grid">
             <div class="caution">
               <h4><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 3 2.5 20h19L12 3Z" stroke-linejoin="round"/><path d="M12 9v5M12 17h.01" stroke-linecap="round"/></svg><span data-i18n="spot.cautionsTitle">알아 둘 점</span></h4>
@@ -823,6 +864,11 @@ const STR = {
     "spot.howTitle": "현장에서 쓰는 순서",
     "spot.shotCaption": "USB-C 이더넷 어댑터를 연결한 태블릿에서 Modbus TCP 응답과 원시 HEX 로그를 확인하는 모습",
     "spot.shotAlt": "USB-C 이더넷 어댑터를 연결한 안드로이드 태블릿에서 모드버스 체커를 실행한 실제 사진",
+    "spot.adapterBadge": "필수 준비물",
+    "spot.adapterTitle": "USB-C to RJ45 이더넷 컨버터는 따로 챙겨야 합니다",
+    "spot.adapterBody": "모드버스 체커는 앱만으로 장비에 붙지 않습니다. CDC-ECM을 지원하는 USB-C to RJ45 이더넷 컨버터를 별도로 준비해 폰이나 태블릿에 연결하고, 여기에 현장 랜선을 꽂아야 통신이 됩니다.",
+    "spot.adapterNote": "※ 사진에 나온 컨버터는 연결 예시이며, 특정 제품 추천은 아닙니다.",
+    "spot.adapterAlt": "태블릿에 연결된 USB-C to RJ45 이더넷 컨버터와 랜선 연결부를 확대한 사진",
     "spot.cautionsTitle": "알아 둘 점",
     "spot.specsTitle": "한눈에 보기",
     "card.play": "Google Play",
@@ -874,6 +920,11 @@ const STR = {
     "spot.howTitle": "How it is used on site",
     "spot.shotCaption": "Modbus Checker on a tablet connected through a USB-C Ethernet adapter, showing Modbus TCP responses and the raw HEX log",
     "spot.shotAlt": "A real photo of Modbus Checker running on an Android tablet connected to a USB-C Ethernet adapter",
+    "spot.adapterBadge": "What you need",
+    "spot.adapterTitle": "The USB-C to RJ45 Ethernet adapter is a separate must-have",
+    "spot.adapterBody": "Modbus Checker cannot reach the device on its own. You need a USB-C to RJ45 Ethernet adapter with CDC-ECM support between the phone or tablet and the field LAN cable — it does not come with the app.",
+    "spot.adapterNote": "※ The adapter in the photo is only an example of the connection, not a product recommendation.",
+    "spot.adapterAlt": "Close-up of the USB-C to RJ45 Ethernet adapter and its LAN cable connection, plugged into the tablet",
     "spot.cautionsTitle": "Good to know",
     "spot.specsTitle": "At a glance",
     "card.play": "Google Play",
@@ -925,6 +976,11 @@ const STR = {
     "spot.howTitle": "現場での使い方",
     "spot.shotCaption": "USB-C イーサネットアダプター経由でタブレット上の Modbus Checker が Modbus TCP の応答と生の HEX ログを表示している様子",
     "spot.shotAlt": "USB-C イーサネットアダプターを接続した Android タブレットで Modbus Checker を実行している実際の写真",
+    "spot.adapterBadge": "必要なもの",
+    "spot.adapterTitle": "USB-C to RJ45 イーサネットアダプターは別途必要です",
+    "spot.adapterBody": "Modbus Checker はアプリだけでは機器につながりません。CDC-ECM 対応の USB-C to RJ45 イーサネットアダプターを別途用意し、スマホやタブレットと現場の LAN ケーブルの間に接続してください。",
+    "spot.adapterNote": "※ 写真のアダプターは接続例であり、特定製品の推奨ではありません。",
+    "spot.adapterAlt": "タブレットに接続した USB-C to RJ45 イーサネットアダプターと LAN ケーブルの接続部の拡大写真",
     "spot.cautionsTitle": "ご注意",
     "spot.specsTitle": "概要",
     "card.play": "Google Play",
