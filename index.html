@@ -417,18 +417,32 @@
   .feat h4{margin:0 0 7px;font-size:14px;font-weight:650;letter-spacing:-.01em}
   .feat p{margin:0;font-size:13px;color:var(--muted);line-height:1.62}
 
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;counter-reset:s}
-  .step{
-    position:relative;padding:20px 20px 20px 20px;border-radius:14px;
-    border:1px solid var(--line);background:rgba(255,255,255,.02);
+  .how-grid{display:grid;grid-template-columns:1fr;gap:18px}
+  .shot{
+    margin:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;
+    background:rgba(255,255,255,.02);
   }
-  .step .num{
-    font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:#7FD8CD;
-    display:flex;align-items:center;gap:9px;margin-bottom:10px;
+  .shot picture{display:block}
+  .shot img{display:block;width:100%;height:auto;aspect-ratio:1600/718;object-fit:cover;background:#0A101B}
+  .shot figcaption{
+    padding:12px 15px;border-top:1px solid var(--line);
+    font-size:12px;color:var(--muted-2);line-height:1.6;
   }
-  .step .num::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--accent-line),transparent)}
-  .step h4{margin:0 0 6px;font-size:14px;font-weight:650}
-  .step p{margin:0;font-size:13px;color:var(--muted);line-height:1.62}
+  .steps-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .step-row{
+    display:grid;grid-template-columns:32px 1fr;gap:13px;align-items:start;
+    padding:14px 16px;border-radius:12px;
+    border:1px solid var(--line);background:rgba(255,255,255,.022);
+    transition:border-color .2s,background .2s;
+  }
+  .step-row:hover{border-color:var(--accent-line);background:rgba(45,212,191,.045)}
+  .step-row .num{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:#8FEADF;
+    height:22px;display:grid;place-items:center;border-radius:6px;
+    border:1px solid var(--accent-line);background:var(--accent-soft);
+  }
+  .step-row h4{margin:0 0 4px;font-size:13.5px;font-weight:650;letter-spacing:-.01em}
+  .step-row p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.62}
 
   .info-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:16px;margin-top:16px}
   .caution{
@@ -496,7 +510,9 @@
     .spot-head{grid-template-columns:1fr;gap:28px}
     .mini-phone{display:none}
     .feat-grid{grid-template-columns:repeat(2,1fr)}
-    .steps{grid-template-columns:1fr}
+    .how-grid{grid-template-columns:1fr}
+    .steps-list{grid-template-columns:1fr}
+    .shot img{aspect-ratio:1200/752}
     .info-grid{grid-template-columns:1fr}
     .about-grid{grid-template-columns:1fr}
     .float.f1{right:0}
@@ -687,7 +703,18 @@
           <div class="feat-grid" id="featGrid"></div>
 
           <div class="subhead"><h3 data-i18n="spot.howTitle">현장에서 쓰는 순서</h3><span class="rule" aria-hidden="true"></span></div>
-          <div class="steps" id="stepGrid"></div>
+          <div class="how-grid">
+            <figure class="shot">
+              <picture>
+                <source media="(min-width:761px)" srcset="assets/modbus-checker-setup.jpg">
+                <img src="assets/modbus-checker-setup-mobile.jpg" loading="lazy" decoding="async"
+                     alt="USB-C 이더넷 어댑터를 연결한 안드로이드 태블릿에서 모드버스 체커를 실행한 실제 사진"
+                     data-i18n-alt="spot.shotAlt">
+              </picture>
+              <figcaption data-i18n="spot.shotCaption">USB-C 이더넷 어댑터를 연결한 태블릿에서 Modbus TCP 응답과 원시 HEX 로그를 확인하는 모습</figcaption>
+            </figure>
+            <ol class="steps-list" id="stepGrid"></ol>
+          </div>
 
           <div class="info-grid">
             <div class="caution">
@@ -794,6 +821,8 @@ const STR = {
     "spot.lead": "노트북과 케이블을 꺼내지 않아도 됩니다. 폰과 USB-C 이더넷 어댑터로 장비에 붙어 링크를 확인하고, 레지스터를 읽고, 필요하면 씁니다.",
     "spot.featuresTitle": "할 수 있는 일",
     "spot.howTitle": "현장에서 쓰는 순서",
+    "spot.shotCaption": "USB-C 이더넷 어댑터를 연결한 태블릿에서 Modbus TCP 응답과 원시 HEX 로그를 확인하는 모습",
+    "spot.shotAlt": "USB-C 이더넷 어댑터를 연결한 안드로이드 태블릿에서 모드버스 체커를 실행한 실제 사진",
     "spot.cautionsTitle": "알아 둘 점",
     "spot.specsTitle": "한눈에 보기",
     "card.play": "Google Play",
@@ -843,6 +872,8 @@ const STR = {
     "spot.lead": "No laptop to open, no extra cable. Attach the phone through a USB-C Ethernet adapter, confirm the link, read the registers, and write only when you mean to.",
     "spot.featuresTitle": "What it does",
     "spot.howTitle": "How it is used on site",
+    "spot.shotCaption": "Modbus Checker on a tablet connected through a USB-C Ethernet adapter, showing Modbus TCP responses and the raw HEX log",
+    "spot.shotAlt": "A real photo of Modbus Checker running on an Android tablet connected to a USB-C Ethernet adapter",
     "spot.cautionsTitle": "Good to know",
     "spot.specsTitle": "At a glance",
     "card.play": "Google Play",
@@ -892,6 +923,8 @@ const STR = {
     "spot.lead": "ノート PC も余分なケーブルも要りません。スマホと USB-C イーサネットアダプターで機器につなぎ、リンクを確認し、レジスタを読む。書き込みは必要なときだけ。",
     "spot.featuresTitle": "できること",
     "spot.howTitle": "現場での使い方",
+    "spot.shotCaption": "USB-C イーサネットアダプター経由でタブレット上の Modbus Checker が Modbus TCP の応答と生の HEX ログを表示している様子",
+    "spot.shotAlt": "USB-C イーサネットアダプターを接続した Android タブレットで Modbus Checker を実行している実際の写真",
     "spot.cautionsTitle": "ご注意",
     "spot.specsTitle": "概要",
     "card.play": "Google Play",
@@ -1009,27 +1042,35 @@ const FEATURES = [
 
 const STEPS = [
   {
-    title: { ko: "어댑터 연결", en: "Plug in the adapter", ja: "アダプターを接続" },
+    title: { ko: "USB-C to RJ45 컨버터 연결", en: "Connect the USB-C to RJ45 adapter", ja: "USB-C to RJ45 アダプターを接続" },
     body: {
-      ko: "USB-C 이더넷(CDC-ECM) 어댑터를 폰에 연결합니다. USB 호스트(OTG)를 지원하는 폰이 필요합니다.",
-      en: "Connect a USB-C Ethernet (CDC-ECM) adapter. The phone needs USB host (OTG) support.",
-      ja: "USB-C イーサネット（CDC-ECM）アダプターをスマホに接続します。USB ホスト（OTG）対応の端末が必要です。"
+      ko: "안드로이드 폰이나 태블릿에 USB-C 이더넷(RJ45) 어댑터를 연결하고, 어댑터에 현장 장비의 랜선을 꽂습니다. USB 호스트(OTG)를 지원하는 기기여야 합니다.",
+      en: "Plug a USB-C Ethernet (RJ45) adapter into the Android phone or tablet, then connect the field device's LAN cable to it. The device needs USB host (OTG) support.",
+      ja: "Android スマホ／タブレットに USB-C イーサネット（RJ45）アダプターを接続し、アダプターに現場機器の LAN ケーブルを挿します。USB ホスト（OTG）対応の端末が必要です。"
     }
   },
   {
-    title: { ko: "점검 주소 설정", en: "Set the check address", ja: "点検用アドレスを設定" },
+    title: { ko: "앱에서 [USB 연결] 클릭", en: "Tap the USB connect button", ja: "アプリで［USB 接続］をタップ" },
     body: {
-      ko: "앱 안에서 IP·프리픽스·게이트웨이를 정하고 IP 충돌을 확인합니다. 폰의 인터넷 설정은 건드리지 않습니다.",
-      en: "Choose IP, prefix and gateway inside the app and check for duplicates. The phone's own internet settings stay untouched.",
-      ja: "アプリ内で IP・プレフィックス・ゲートウェイを決め、IP の重複を確認します。スマホ自体のインターネット設定には触れません。"
+      ko: "앱을 실행한 뒤 화면의 [USB 연결]을 눌러 어댑터를 인식시킵니다. 인식되면 어댑터 정보(VID:PID)와 링크 상태가 표시됩니다.",
+      en: "Open the app and tap the USB connect button so it claims the adapter. Once it is recognised, the adapter's VID:PID and link state appear on screen.",
+      ja: "アプリを起動し、画面の［USB 接続］を押してアダプターを認識させます。認識されるとアダプターの VID:PID とリンク状態が表示されます。"
     }
   },
   {
-    title: { ko: "장비 점검", en: "Check the device", ja: "機器を点検" },
+    title: { ko: "내 IP 설정", en: "Set your IP", ja: "自分の IP を設定" },
     body: {
-      ko: "ARP·Ping·TCP로 연결을 확인한 뒤 Unit ID와 주소로 레지스터를 읽고, 필요하면 씁니다.",
-      en: "Confirm the link with ARP, ping and TCP, then read registers by unit ID and address — and write when you mean to.",
-      ja: "ARP・Ping・TCP で接続を確認し、ユニット ID とアドレスでレジスタを読み書きします。"
+      ko: "장비망에 맞춰 앱 안에서 내 IP(예: 192.168.0.200), 프리픽스, 게이트웨이를 설정합니다. 이 주소는 앱 안에서만 쓰이고 폰의 인터넷 설정은 그대로 둡니다.",
+      en: "Set your IP inside the app (for example 192.168.0.200), along with the prefix and gateway, to match the equipment network. The address is used only inside the app; the phone's own internet settings stay as they are.",
+      ja: "機器ネットワークに合わせて、アプリ内で自分の IP（例：192.168.0.200）、プレフィックス、ゲートウェイを設定します。このアドレスはアプリ内だけで使い、スマホ自体のインターネット設定は変更しません。"
+    }
+  },
+  {
+    title: { ko: "상대 장비 정보 입력 후 통신", en: "Enter the target device, then communicate", ja: "相手機器を入力して通信" },
+    body: {
+      ko: "상대 장비 IP, 포트(기본 502), 국번(Unit ID)을 입력하고 Ping·ARP·포트 점검으로 연결을 확인합니다. 이어서 Modbus TCP 요청을 보내 응답과 값을 바로 확인합니다.",
+      en: "Enter the target IP, port (502 by default) and unit ID, check the link with ping, ARP and port tests, then send Modbus TCP requests and read the response and values on the spot.",
+      ja: "相手機器の IP、ポート（既定 502）、ユニット ID を入力し、Ping・ARP・ポート確認で接続をチェックします。続けて Modbus TCP 要求を送り、応答と値をその場で確認できます。"
     }
   }
 ];
@@ -1091,6 +1132,7 @@ function t(key) {
 function applyI18n() {
   $$("[data-i18n]").forEach((el) => { el.textContent = t(el.getAttribute("data-i18n")); });
   $$("[data-i18n-html]").forEach((el) => { el.innerHTML = t(el.getAttribute("data-i18n-html")); });
+  $$("[data-i18n-alt]").forEach((el) => { el.setAttribute("alt", t(el.getAttribute("data-i18n-alt"))); });
   document.documentElement.setAttribute("lang", lang);
   document.title = t("meta.title");
   const desc = $('meta[name="description"]');
@@ -1157,8 +1199,8 @@ function renderSpotlight() {
     '<h4>' + esc(pick(f.title, lang)) + '</h4><p>' + esc(pick(f.body, lang)) + '</p></div>'
   ).join("");
   $("#stepGrid").innerHTML = STEPS.map((s, i) =>
-    '<div class="step"><div class="num">' + String(i + 1).padStart(2, "0") + '</div>' +
-    '<h4>' + esc(pick(s.title, lang)) + '</h4><p>' + esc(pick(s.body, lang)) + '</p></div>'
+    '<li class="step-row"><span class="num">' + String(i + 1).padStart(2, "0") + '</span>' +
+    '<div><h4>' + esc(pick(s.title, lang)) + '</h4><p>' + esc(pick(s.body, lang)) + '</p></div></li>'
   ).join("");
   $("#cautionList").innerHTML = CAUTIONS.map((c) => "<li>" + esc(pick(c, lang)) + "</li>").join("");
   $("#specList").innerHTML = SPECS.map((s) =>
