@@ -1,6 +1,6 @@
 # 개인정보처리방침 / Privacy Policy
 
-시행일 / Effective date: 2026.11.11
+시행일 / Effective date: 2026.11.15
 
 ---
 
@@ -32,6 +32,10 @@ Modbus 통신과 장비 데이터는 폰과 USB 어댑터 사이의 현장에서
 유럽경제지역, 영국 등 동의가 필요한 곳에서는 광고를 요청하기 전에 UMP 동의 창을 띄울 수 있습니다. 동의하지 않거나 필요한 네트워크가 없으면 광고를 요청하지 않습니다. 동의 선택은 기기에서 바꿀 수 있으며, Google 의 광고 설정과 폰의 광고 ID 재설정으로 광고 ID 를 지울 수 있습니다.
 
 Google 의 안내: https://policies.google.com/privacy 그리고 https://policies.google.com/technologies/ads
+
+### 광고 제거 구매
+
+배너를 없애는 일회성 인앱 상품이 있습니다. 결제는 Google Play 가 처리합니다. 개발자는 카드 번호, 결제 수단, 영수증을 받지 않고 서버에 구매 기록을 저장하지 않습니다. 앱은 이 폰에 광고를 숨길지 여부만 저장합니다. 구매를 확인하는 통신은 Google Play 가 LTE 또는 Wi-Fi 로 하며, USB 장비망으로는 나가지 않습니다. 구매를 환불하거나 취소하면 다음 확인 때 광고가 다시 나올 수 있습니다. 앱을 지우고 다시 설치한 뒤 같은 Google 계정으로 복원할 수 있습니다.
 
 ### 아동
 
@@ -83,6 +87,10 @@ Google is the controller of that processing. The developer does not store the ad
 Where consent is required, including the EEA and the UK, the app can show a UMP consent form before requesting ads. If you do not consent, or no suitable phone network is available, the app does not request an ad. You can change the consent choice on the device, and you can reset the advertising ID in the phone's settings or in Google's ad settings.
 
 Google's policies: https://policies.google.com/privacy and https://policies.google.com/technologies/ads
+
+### Remove-ads purchase
+
+There is a one-time in-app product that removes the banner. Google Play processes the payment. The developer does not receive card numbers, payment methods, or receipts, and does not store the purchase on a developer server. The app stores only a flag on the phone for whether ads should stay hidden. Google Play checks the purchase over LTE or Wi-Fi, not over the USB equipment network. If the purchase is refunded or revoked, ads can return the next time the app checks. Reinstalling and restoring with the same Google account brings the purchase back.
 
 ### Children
 
