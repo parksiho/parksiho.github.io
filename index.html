@@ -418,6 +418,10 @@
   }
   .feat h4{margin:0 0 7px;font-size:14px;font-weight:650;letter-spacing:-.01em}
   .feat p{margin:0;font-size:13px;color:var(--muted);line-height:1.62}
+  .feat.feat-wide{grid-column:1/-1;display:grid;grid-template-columns:34px minmax(0,1fr);column-gap:16px;row-gap:4px}
+  .feat.feat-wide .ic{grid-row:1 / span 2;margin-bottom:0}
+  .feat.feat-wide h4{grid-column:2;align-self:end;margin:0}
+  .feat.feat-wide p{grid-column:2}
 
   .how-grid{display:grid;grid-template-columns:1fr;gap:18px}
   .shot{
@@ -454,6 +458,25 @@
     margin-top:2px;padding-top:10px;border-top:1px solid rgba(255,255,255,.07);
     font-size:11.5px;color:var(--muted-2);line-height:1.6;
   }
+  .price-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+  .price{
+    border:1px solid var(--line);border-radius:14px;padding:22px 24px;
+    background:rgba(255,255,255,.022);display:flex;flex-direction:column;gap:9px;
+  }
+  .price.paid{
+    border-color:rgba(45,212,191,.28);
+    background:linear-gradient(160deg,rgba(45,212,191,.07),rgba(255,255,255,.014) 62%);
+  }
+  .price-tag{
+    align-self:flex-start;display:inline-flex;align-items:center;
+    font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    padding:4px 9px;border-radius:999px;color:var(--muted);
+    border:1px solid var(--line-strong);background:rgba(255,255,255,.03);
+  }
+  .price.paid .price-tag{color:#8FEADF;border-color:var(--accent-line);background:var(--accent-soft)}
+  .price h4{margin:0;font-size:15px;font-weight:680;letter-spacing:-.01em;color:#EAF3FB;line-height:1.45}
+  .price p{margin:0;font-size:13px;color:var(--muted);line-height:1.68}
+  .price-note{margin:12px 0 0;font-size:11.5px;color:var(--muted-2);line-height:1.6}
   .steps-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:9px}
   .step-row{
     display:grid;grid-template-columns:32px 1fr;gap:13px;align-items:start;
@@ -547,6 +570,12 @@
     .float.f1{right:0}
     .float.f2{left:0}
   }
+  @media (min-width:1001px){
+    .feat.feat-wide{grid-template-columns:34px 230px minmax(0,1fr);column-gap:18px;align-items:center}
+    .feat.feat-wide .ic{grid-row:auto}
+    .feat.feat-wide h4{grid-column:auto;align-self:center}
+    .feat.feat-wide p{grid-column:auto}
+  }
   @media (max-width:760px){
     .wrap{padding:0 18px}
     nav.links a{display:none}
@@ -567,6 +596,7 @@
     .float.f2{display:none}
     .hero-cta .btn{flex:1 1 auto;justify-content:center}
     .foot{flex-direction:column;align-items:flex-start}
+    .price-grid{grid-template-columns:1fr}
     .spec-row{grid-template-columns:96px 1fr;gap:10px;font-size:12.5px}
   }
   @media (max-width:400px){
@@ -626,7 +656,7 @@
           <div class="hero-meta">
             <span class="chip"><span class="d" aria-hidden="true"></span><span data-i18n="hero.meta1">한국 · 미국 · 일본 출시</span></span>
             <span class="chip"><span class="d" aria-hidden="true"></span><span data-i18n="hero.meta2">한국어 · 영어 · 일본어</span></span>
-            <span class="chip"><span class="d" aria-hidden="true"></span><span data-i18n="hero.meta3">무료 · 광고 포함</span></span>
+            <span class="chip"><span class="d" aria-hidden="true"></span><span data-i18n="hero.meta3">무료 · 앱 안에서 광고 제거</span></span>
           </div>
         </div>
 
@@ -760,6 +790,21 @@
             </div>
           </div>
 
+          <div class="subhead"><h3 data-i18n="spot.priceTitle">가격과 광고</h3><span class="rule" aria-hidden="true"></span></div>
+          <div class="price-grid">
+            <div class="price">
+              <span class="price-tag" data-i18n="spot.freeTag">무료</span>
+              <h4 data-i18n="spot.freeTitle">점검 기능은 전부 무료</h4>
+              <p data-i18n="spot.freeBody">프로필, 스캔, 추세까지 모든 점검 기능을 무료로 씁니다. 화면 아래에 배너 광고가 한 줄 나오고, 광고 요청은 LTE·Wi‑Fi로만 나가 장비망으로는 가지 않습니다.</p>
+            </div>
+            <div class="price paid">
+              <span class="price-tag" data-i18n="spot.paidTag">1회 구매</span>
+              <h4 data-i18n="spot.paidTitle">광고 제거</h4>
+              <p data-i18n="spot.paidBody">앱 안에서 한 번 구매하면 이 Google 계정의 배너 광고가 사라집니다. 다시 설치하거나 다른 기기에서도 같은 계정이면 구매 복원으로 되살아납니다. 구독이 아니고, 금액은 Play 스토어가 알려 주는 현지 가격 그대로입니다.</p>
+            </div>
+          </div>
+          <p class="price-note" data-i18n="spot.priceNote">표시 금액은 나라와 통화에 따라 다릅니다. 결제는 앱 안에서 Play 스토어가 보여 주는 가격으로 이뤄집니다.</p>
+
           <div class="info-grid">
             <div class="caution">
               <h4><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 3 2.5 20h19L12 3Z" stroke-linejoin="round"/><path d="M12 9v5M12 17h.01" stroke-linecap="round"/></svg><span data-i18n="spot.cautionsTitle">알아 둘 점</span></h4>
@@ -850,7 +895,7 @@ const STR = {
     "hero.cta2": "기능 살펴보기",
     "hero.meta1": "한국 · 미국 · 일본 출시",
     "hero.meta2": "한국어 · 영어 · 일본어",
-    "hero.meta3": "무료 · 광고 포함",
+    "hero.meta3": "무료 · 앱 안에서 광고 제거",
     "mock.latency": "응답",
     "mock.frames": "프레임",
     "apps.kicker": "Apps",
@@ -869,11 +914,19 @@ const STR = {
     "spot.shotAlt": "USB-C 이더넷 어댑터를 연결한 안드로이드 태블릿에서 모드버스 체커를 실행한 실제 사진",
     "spot.adapterBadge": "필수 준비물",
     "spot.adapterTitle": "USB-C to RJ45 이더넷 컨버터는 따로 챙겨야 합니다",
-    "spot.adapterBody": "모드버스 체커는 앱만으로 장비에 붙지 않습니다. CDC-ECM을 지원하는 USB-C to RJ45 이더넷 컨버터를 별도로 준비해 폰이나 태블릿에 연결하고, 여기에 현장 랜선을 꽂아야 통신이 됩니다.",
+    "spot.adapterBody": "모드버스 체커는 앱만으로 장비에 붙지 않습니다. CDC-ECM을 지원하는 USB-C to RJ45 이더넷 컨버터를 별도로 준비해 폰이나 태블릿에 연결하고, 여기에 현장 랜선을 꽂아야 통신이 됩니다. CDC-ECM이 없는 어댑터도 AX88179·AX88772·RTL8152/8153 계열이면 앱의 벤더 드라이버로 연결합니다.",
     "spot.adapterNote": "※ 사진에 나온 컨버터는 연결 예시이며, 특정 제품 추천은 아닙니다.",
     "spot.adapterAlt": "태블릿에 연결된 USB-C to RJ45 이더넷 컨버터와 랜선 연결부를 확대한 사진",
     "spot.cautionsTitle": "알아 둘 점",
     "spot.specsTitle": "한눈에 보기",
+    "spot.priceTitle": "가격과 광고",
+    "spot.freeTag": "무료",
+    "spot.freeTitle": "점검 기능은 전부 무료",
+    "spot.freeBody": "프로필, 스캔, 추세를 포함한 점검 기능을 모두 무료로 씁니다. 화면 아래에 배너 광고가 한 줄 나오고, 광고 요청은 LTE·Wi‑Fi로만 나가 장비망으로는 가지 않습니다.",
+    "spot.paidTag": "1회 구매",
+    "spot.paidTitle": "광고 제거",
+    "spot.paidBody": "앱 안에서 한 번 구매하면 이 Google 계정의 배너 광고가 사라집니다. 다시 설치하거나 다른 기기에서도 같은 계정이면 구매 복원으로 되살아납니다. 구독이 아니고, 금액은 Play 스토어가 알려 주는 현지 가격 그대로입니다.",
+    "spot.priceNote": "표시 금액은 나라와 통화에 따라 다릅니다. 결제는 앱 안에서 Play 스토어가 보여 주는 가격으로 이뤄집니다.",
     "card.play": "Google Play",
     "card.privacy": "개인정보처리방침",
     "card.detail": "자세히 보기",
@@ -906,7 +959,7 @@ const STR = {
     "hero.cta2": "See what it does",
     "hero.meta1": "Available in KR · US · JP",
     "hero.meta2": "Korean · English · Japanese",
-    "hero.meta3": "Free · ad-supported",
+    "hero.meta3": "Free · in-app ad removal",
     "mock.latency": "Response",
     "mock.frames": "Frames",
     "apps.kicker": "Apps",
@@ -925,11 +978,19 @@ const STR = {
     "spot.shotAlt": "A real photo of Modbus Checker running on an Android tablet connected to a USB-C Ethernet adapter",
     "spot.adapterBadge": "What you need",
     "spot.adapterTitle": "The USB-C to RJ45 Ethernet adapter is a separate must-have",
-    "spot.adapterBody": "Modbus Checker cannot reach the device on its own. You need a USB-C to RJ45 Ethernet adapter with CDC-ECM support between the phone or tablet and the field LAN cable — it does not come with the app.",
+    "spot.adapterBody": "Modbus Checker cannot reach the device on its own. You need a USB-C to RJ45 Ethernet adapter with CDC-ECM support between the phone or tablet and the field LAN cable — it does not come with the app. Adapters without ECM still connect if they use an AX88179, AX88772 or RTL8152/8153 chip, through the app's own vendor drivers.",
     "spot.adapterNote": "※ The adapter in the photo is only an example of the connection, not a product recommendation.",
     "spot.adapterAlt": "Close-up of the USB-C to RJ45 Ethernet adapter and its LAN cable connection, plugged into the tablet",
     "spot.cautionsTitle": "Good to know",
     "spot.specsTitle": "At a glance",
+    "spot.priceTitle": "Price and ads",
+    "spot.freeTag": "Free",
+    "spot.freeTitle": "Every check, free",
+    "spot.freeBody": "Profiles, scans, trends and every other check are free. One banner ad sits at the bottom of the screen, and ad traffic uses LTE or Wi‑Fi only — never the equipment network.",
+    "spot.paidTag": "One-time",
+    "spot.paidTitle": "Remove ads",
+    "spot.paidBody": "A single in-app purchase removes the banner ad for this Google account. Reinstalling or moving to another device restores it with the same account. It is not a subscription, and the amount is the local price Google Play gives the app.",
+    "spot.priceNote": "The amount depends on country and currency. You pay the price Google Play shows inside the app.",
     "card.play": "Google Play",
     "card.privacy": "Privacy Policy",
     "card.detail": "Details",
@@ -962,7 +1023,7 @@ const STR = {
     "hero.cta2": "機能を見る",
     "hero.meta1": "韓国・米国・日本で提供",
     "hero.meta2": "韓国語・英語・日本語",
-    "hero.meta3": "無料・広告あり",
+    "hero.meta3": "無料・アプリ内で広告削除",
     "mock.latency": "応答",
     "mock.frames": "フレーム",
     "apps.kicker": "Apps",
@@ -981,11 +1042,19 @@ const STR = {
     "spot.shotAlt": "USB-C イーサネットアダプターを接続した Android タブレットで Modbus Checker を実行している実際の写真",
     "spot.adapterBadge": "必要なもの",
     "spot.adapterTitle": "USB-C to RJ45 イーサネットアダプターは別途必要です",
-    "spot.adapterBody": "Modbus Checker はアプリだけでは機器につながりません。CDC-ECM 対応の USB-C to RJ45 イーサネットアダプターを別途用意し、スマホやタブレットと現場の LAN ケーブルの間に接続してください。",
+    "spot.adapterBody": "Modbus Checker はアプリだけでは機器につながりません。CDC-ECM 対応の USB-C to RJ45 イーサネットアダプターを別途用意し、スマホやタブレットと現場の LAN ケーブルの間に接続してください。ECM が無いアダプターでも、AX88179・AX88772・RTL8152/8153 系のチップならアプリ内蔵のベンダードライバーで接続します。",
     "spot.adapterNote": "※ 写真のアダプターは接続例であり、特定製品の推奨ではありません。",
     "spot.adapterAlt": "タブレットに接続した USB-C to RJ45 イーサネットアダプターと LAN ケーブルの接続部の拡大写真",
     "spot.cautionsTitle": "ご注意",
     "spot.specsTitle": "概要",
+    "spot.priceTitle": "価格と広告",
+    "spot.freeTag": "無料",
+    "spot.freeTitle": "点検機能はすべて無料",
+    "spot.freeBody": "プロファイル、スキャン、推移を含む点検機能はすべて無料です。画面下部にバナー広告が 1 行表示され、広告の通信は LTE・Wi‑Fi のみで、計測ネットワークには流れません。",
+    "spot.paidTag": "1 回購入",
+    "spot.paidTitle": "広告を削除",
+    "spot.paidBody": "アプリ内で一度購入すると、この Google アカウントのバナー広告が表示されなくなります。再インストールや別の端末でも、同じアカウントなら購入の復元で戻ります。サブスクリプションではなく、金額は Google Play が示す現地価格のままです。",
+    "spot.priceNote": "表示金額は国や通貨によって異なります。お支払いは、アプリ内で Google Play が表示する価格で行われます。",
     "card.play": "Google Play",
     "card.privacy": "プライバシーポリシー",
     "card.detail": "詳細",
@@ -1028,11 +1097,11 @@ const APPS = [
     name: { ko: "모드버스 체커", en: "Modbus Checker", ja: "Modbus Checker" },
     sub: { ko: "USB 이더넷 계측기 점검", en: "USB Ethernet instrument check", ja: "USB イーサネット計測器チェック" },
     desc: {
-      ko: "USB-C 이더넷 어댑터로 전력량계, PLC, 게이트웨이의 Modbus TCP를 점검합니다. ARP·Ping·TCP 확인부터 FC01–FC16 읽기·쓰기, 폴링과 원시 HEX 로그까지 한 화면에서 봅니다.",
-      en: "Checks Modbus TCP on meters, PLCs and gateways through a USB-C Ethernet adapter: ARP, ping and TCP checks, FC01–FC16 read and write, polling and raw HEX logs on one screen.",
-      ja: "USB-C イーサネットアダプターで電力量計、PLC、ゲートウェイの Modbus TCP を点検。ARP・Ping・TCP の確認から FC01–FC16 の読み書き、ポーリング、生の HEX ログまで 1 画面で確認できます。"
+      ko: "USB-C 이더넷 어댑터로 전력량계, PLC, 게이트웨이의 Modbus TCP를 점검합니다. 장비 프로필, 레지스터 별칭과 CSV, IP·국번 스캔, 추세 그래프에 ARP·Ping·TCP 확인과 FC01–FC16 읽기·쓰기, 원시 HEX 로그까지 한 화면에 담았습니다. 기본은 무료이고 앱 안에서 배너 광고를 제거할 수 있습니다.",
+      en: "Checks Modbus TCP on meters, PLCs and gateways through a USB-C Ethernet adapter: device profiles, register aliases and CSV, IP and unit scans, trend graphs, ARP and ping and TCP checks, FC01–FC16 read and write, polling and raw HEX logs in one app. Free to use, with an in-app purchase to remove the banner ad.",
+      ja: "USB-C イーサネットアダプターで電力量計、PLC、ゲートウェイの Modbus TCP を点検。機器プロファイル、レジスタ別名と CSV、IP・ユニットスキャン、推移グラフ、ARP・Ping・TCP の確認、FC01–FC16 の読み書き、生の HEX ログを 1 つの画面に。基本は無料で、アプリ内でバナー広告を削除できます。"
     },
-    tags: ["Android", "Modbus TCP", "CDC-ECM", "KO · EN · JA"],
+    tags: ["Android", "Modbus TCP", "Profiles · CSV", "KO · EN · JA"],
     play: "https://play.google.com/store/apps/details?id=com.emsfield.fieldtester",
     policy: "/mc-privacy-policy.md",
     icon: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#5EEAD4" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="12" rx="2"/><path d="M8 20h8M12 16v4M8 8h3M8 12h6"/><circle cx="16.5" cy="8" r="1" fill="#2DD4BF" stroke="none"/></svg>'
@@ -1065,9 +1134,9 @@ const FEATURES = [
     icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h10M4 12h16M4 17h7"/><circle cx="17" cy="7" r="2"/><circle cx="14" cy="17" r="2"/></svg>',
     title: { ko: "Modbus TCP 읽기와 쓰기", en: "Modbus TCP read and write", ja: "Modbus TCP の読み書き" },
     body: {
-      ko: "FC01, 02, 03, 04, 05, 06, 15, 16을 지원합니다. 코일, 디스크리트 입력, 홀딩 레지스터, 인풋 레지스터를 같은 화면에서 다룹니다.",
-      en: "FC01, 02, 03, 04, 05, 06, 15 and 16 are supported: coils, discrete inputs, holding registers and input registers in one place.",
-      ja: "FC01・02・03・04・05・06・15・16 に対応。コイル、ディスクリート入力、保持レジスタ、入力レジスタを同じ画面で扱えます。"
+      ko: "FC01, 02, 03, 04, 05, 06, 15, 16을 지원합니다. 코일, 디스크리트 입력, 홀딩 레지스터, 인풋 레지스터를 같은 화면에서 다루고, 응답 표에서 홀딩 레지스터 행을 누르면 쓰기 창이, 코일 행을 누르면 ON/OFF가 열립니다.",
+      en: "FC01, 02, 03, 04, 05, 06, 15 and 16: coils, discrete inputs, holding registers and input registers in one place. Tap a holding register row to open a write sheet, or a coil row to switch it on and off.",
+      ja: "FC01・02・03・04・05・06・15・16 に対応。コイル、ディスクリート入力、保持レジスタ、入力レジスタを同じ画面で扱い、応答表の保持レジスタ行を押すと書き込み、コイル行を押すと ON/OFF が開きます。"
     }
   },
   {
@@ -1083,18 +1152,55 @@ const FEATURES = [
     icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 3 5-7 4 4"/><path d="M3 21h18"/></svg>',
     title: { ko: "주기 폴링과 원시 로그", en: "Polling and raw logs", ja: "周期ポーリングと生ログ" },
     body: {
-      ko: "정한 주기로 값을 다시 읽고 응답 시간을 봅니다. 문제가 생기면 원시 HEX 로그로 프레임을 그대로 확인합니다.",
-      en: "Poll on an interval and watch the response time. When something looks wrong, the raw HEX log shows the frames exactly as they went out and came back.",
-      ja: "決めた周期で再取得し、応答時間を確認します。異常時は生の HEX ログでフレームをそのまま確認できます。"
+      ko: "정한 주기로 값을 다시 읽고 응답 시간을 봅니다. 폴링 사이에 값이 바뀐 행은 배경이 잠깐 밝아져 눈에 띄고, 문제가 생기면 원시 HEX 로그로 프레임을 그대로 확인합니다.",
+      en: "Poll on an interval and watch the response time. A row whose value changed flashes briefly between polls, and when something looks wrong the raw HEX log shows the frames exactly as they went out and came back.",
+      ja: "決めた周期で再取得し、応答時間を確認します。ポーリングの間に値が変わった行は一瞬明るくなり、異常時は生の HEX ログでフレームをそのまま確認できます。"
     }
   },
   {
     icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="10" height="12" rx="2"/><path d="M13 10h4a3 3 0 0 1 3 3v1a3 3 0 0 0 3 3M7 10v4"/></svg>',
-    title: { ko: "어댑터 확인", en: "Adapter diagnostics", ja: "アダプターの確認" },
+    title: { ko: "어댑터 진단과 드라이버", en: "Adapter diagnostics and drivers", ja: "アダプター診断とドライバー" },
     body: {
-      ko: "USB VID:PID와 CDC-ECM 지원 여부를 보여 줍니다. 연결이 안 되는 이유가 케이블인지 칩인지 먼저 구분할 수 있습니다.",
-      en: "USB VID:PID and CDC-ECM support are shown, so you can tell whether the cable or the chip is the reason it will not connect.",
-      ja: "USB VID:PID と CDC-ECM 対応かを表示。つながらない原因がケーブルかチップかを先に切り分けられます。"
+      ko: "USB VID:PID와 CDC-ECM 지원 여부를 보여 주고, ECM이 없으면 AX88179·AX88772·RTL8152/8153 계열을 벤더 드라이버로 엽니다. 연결이 안 되는 이유가 케이블인지 칩인지 먼저 구분할 수 있습니다.",
+      en: "USB VID:PID and CDC-ECM support are shown, and when there is no ECM interface the app opens AX88179, AX88772 and RTL8152/8153 chips through vendor drivers. You can tell whether the cable or the chip is the reason it will not connect.",
+      ja: "USB VID:PID と CDC-ECM 対応かを表示し、ECM が無い場合は AX88179・AX88772・RTL8152/8153 系をベンダードライバーで開きます。つながらない原因がケーブルかチップかを先に切り分けられます。"
+    }
+  },
+  {
+    icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10a1 1 0 0 1 1 1v15l-6-4-6 4V5a1 1 0 0 1 1-1Z"/></svg>',
+    title: { ko: "장비 프로필 저장", en: "Device profiles", ja: "機器プロファイル" },
+    body: {
+      ko: "현장마다 앱 IP·게이트웨이, 장비 IP·포트, 국번, 기능 코드, 시작 주소·개수, 데이터 형식, 바이트 순서, 폴링 주기를 이름 하나로 저장합니다. 다음 현장에서는 이름만 눌러 그대로 불러오고, 이름 변경·삭제와 JSON 내보내기·가져오기로 팀과 같은 설정을 주고받습니다. 설정은 폰 안에만 둡니다.",
+      en: "Save the app IP and gateway, device IP and port, unit ID, function code, start address and count, data type, byte order and poll interval under one name per site. Next time, tap the name to bring it all back, then rename or delete it and share a set with your team as JSON. The settings stay on the phone.",
+      ja: "現場ごとに、アプリの IP とゲートウェイ、機器の IP・ポート、ユニット ID、機能コード、開始アドレスと個数、データ型、バイト順、ポーリング周期を名前ひとつで保存します。次回は名前を押すだけで元どおり。名前変更・削除、JSON の書き出し・読み込みでチームと設定をやり取りでき、設定は端末内だけに保存します。"
+    }
+  },
+  {
+    icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12.5 12.5 20a2 2 0 0 1-2.8 0L4 14.3V4h10.3l5.7 5.7a2 2 0 0 1 0 2.8Z"/><circle cx="8.5" cy="8.5" r="1.4"/></svg>',
+    title: { ko: "레지스터 별칭과 CSV", en: "Aliases and CSV records", ja: "レジスタ別名と CSV" },
+    body: {
+      ko: "40001 같은 주소에 '수전 전압', 'V'처럼 이름과 단위를 붙이면 응답 표에 그대로 나옵니다. 읽은 값은 시각·주소·별칭·값·단위 순서의 CSV로, 원시 프레임은 텍스트로 내보내 보고서에 바로 붙입니다. 저장소 권한은 쓰지 않습니다.",
+      en: "Give an address such as 40001 a name and a unit — line voltage, V — and it shows up that way in the response table. Read values export as CSV (time, address, alias, value, unit) and raw frames as text, ready to paste into a report. No storage permission is used.",
+      ja: "40001 などのアドレスに「受電電圧」「V」のような名前と単位を付けると、応答表にそのまま表示されます。読み取った値は時刻・アドレス・別名・値・単位の CSV として、生フレームはテキストとして書き出せ、報告書にすぐ貼れます。ストレージ権限は使いません。"
+    }
+  },
+  {
+    icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 7a5 5 0 1 0 5 5"/><path d="M12 12l6.5-6.5"/></svg>',
+    title: { ko: "IP·국번 스캔", en: "IP and unit number scan", ja: "IP・ユニット番号スキャン" },
+    body: {
+      ko: "장비 IP를 모를 때 앱 IP와 프리픽스로 잡은 서브넷에서 TCP 502가 열린 장비를 찾고, 국번은 1–247을 가벼운 읽기로 물어봅니다. 결과를 누르면 입력칸에 들어갑니다. 스캔도 앱의 네트워크 스택 안에서만 돌고, 중간에 취소할 수 있습니다.",
+      en: "When you do not know the device address, scan the subnet set by the app IP and prefix for hosts with TCP 502 open, and probe unit numbers 1–247 with light reads. Tap a result to fill the field. The scan runs only inside the app's own network stack and can be cancelled.",
+      ja: "機器の IP が分からないときは、アプリ IP とプレフィックスで決まるサブネットから TCP 502 が開いた機器を探し、ユニット番号は 1–247 を軽い読み取りで確認します。結果を押すと入力欄に入ります。スキャンはアプリ内のネットワークスタックだけで動き、途中で中止できます。"
+    }
+  },
+  {
+    icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><path d="M7 14l3.5-4.5L14 12l4-6"/></svg>',
+    wide: true,
+    title: { ko: "실시간 추세 그래프", en: "Live trend graph", ja: "リアルタイム推移グラフ" },
+    body: {
+      ko: "폴링 중인 레지스터를 1–2개 고르면 최근 값이 꺾은선으로 그려지고 현재·최소·최대가 함께 표시됩니다. 계열마다 세로 축을 따로 잡아 전압과 전류처럼 단위가 다른 값도 한 화면에서 눌리지 않게 봅니다.",
+      en: "Pick one or two registers while polling and their recent values are drawn as a line, with the current, minimum and maximum beside it. Each series gets its own vertical scale, so values with different units — voltage and current — stay readable on one screen.",
+      ja: "ポーリング中のレジスタを 1〜2 個選ぶと、最近の値が折れ線で描かれ、現在・最小・最大が並びます。系列ごとに縦軸を分けるので、電圧と電流のように単位の違う値も 1 画面でつぶれずに読めます。"
     }
   }
 ];
@@ -1119,17 +1225,17 @@ const STEPS = [
   {
     title: { ko: "내 IP 설정", en: "Set your IP", ja: "自分の IP を設定" },
     body: {
-      ko: "장비망에 맞춰 앱 안에서 내 IP(예: 192.168.0.200), 프리픽스, 게이트웨이를 설정합니다. 이 주소는 앱 안에서만 쓰이고 폰의 인터넷 설정은 그대로 둡니다.",
-      en: "Set your IP inside the app (for example 192.168.0.200), along with the prefix and gateway, to match the equipment network. The address is used only inside the app; the phone's own internet settings stay as they are.",
-      ja: "機器ネットワークに合わせて、アプリ内で自分の IP（例：192.168.0.200）、プレフィックス、ゲートウェイを設定します。このアドレスはアプリ内だけで使い、スマホ自体のインターネット設定は変更しません。"
+      ko: "장비망에 맞춰 앱 안에서 내 IP(예: 192.168.0.200), 프리픽스, 게이트웨이를 설정합니다. 이 주소는 앱 안에서만 쓰이고 폰의 인터넷 설정은 그대로 둡니다. 다시 올 현장이라면 이 설정을 장비 프로필로 저장해 두고 이름만 눌러 불러옵니다.",
+      en: "Set your IP inside the app (for example 192.168.0.200), along with the prefix and gateway, to match the equipment network. The address is used only inside the app; the phone's own internet settings stay as they are. On a site you will revisit, save the whole setup as a device profile and load it with one tap.",
+      ja: "機器ネットワークに合わせて、アプリ内で自分の IP（例：192.168.0.200）、プレフィックス、ゲートウェイを設定します。このアドレスはアプリ内だけで使い、スマホ自体のインターネット設定は変更しません。再び行く現場なら、この設定を機器プロファイルとして保存し、名前を押すだけで呼び出せます。"
     }
   },
   {
     title: { ko: "상대 장비 정보 입력 후 통신", en: "Enter the target device, then communicate", ja: "相手機器を入力して通信" },
     body: {
-      ko: "상대 장비 IP, 포트(기본 502), 국번(Unit ID)을 입력하고 Ping·ARP·포트 점검으로 연결을 확인합니다. 이어서 Modbus TCP 요청을 보내 응답과 값을 바로 확인합니다.",
-      en: "Enter the target IP, port (502 by default) and unit ID, check the link with ping, ARP and port tests, then send Modbus TCP requests and read the response and values on the spot.",
-      ja: "相手機器の IP、ポート（既定 502）、ユニット ID を入力し、Ping・ARP・ポート確認で接続をチェックします。続けて Modbus TCP 要求を送り、応答と値をその場で確認できます。"
+      ko: "상대 장비 IP, 포트(기본 502), 국번(Unit ID)을 입력하고 Ping·ARP·포트 점검으로 연결을 확인합니다. IP나 국번을 모르면 IP 스캔·국번 스캔으로 찾아 누릅니다. 이어서 Modbus TCP 요청을 보내 응답과 값을 바로 확인합니다.",
+      en: "Enter the target IP, port (502 by default) and unit ID, then check the link with ping, ARP and port tests. If you do not know them, the IP and unit scans find them and fill the fields when you tap a result. Then send Modbus TCP requests and read the response and values on the spot.",
+      ja: "相手機器の IP、ポート（既定 502）、ユニット ID を入力し、Ping・ARP・ポート確認で接続をチェックします。分からない場合は IP スキャン・ユニットスキャンで見つけて押します。続けて Modbus TCP 要求を送り、応答と値をその場で確認できます。"
     }
   }
 ];
@@ -1141,14 +1247,14 @@ const CAUTIONS = [
     ja: "書き込み（FC05・06・15・16）は機器のレジスタを実際に変更します。アドレスと値を確認してから実行してください。"
   },
   {
-    ko: "USB 드라이버는 CDC-ECM 어댑터만 지원합니다. ECM이 없는 칩은 연결되지 않을 수 있습니다.",
-    en: "Only CDC-ECM adapters are supported. A chip without ECM may not connect.",
-    ja: "USB ドライバーは CDC-ECM アダプターのみ対応です。ECM 非対応のチップは接続できない場合があります。"
+    ko: "CDC-ECM 어댑터를 먼저 쓰고, ECM이 없으면 AX88179·AX88772·RTL8152/8153 계열을 벤더 드라이버로 연결합니다. 그 밖의 칩셋은 연결되지 않을 수 있습니다.",
+    en: "CDC-ECM adapters are used first; without ECM, AX88179, AX88772 and RTL8152/8153 chips connect through vendor drivers. Other chipsets may not connect.",
+    ja: "CDC-ECM アダプターを優先し、ECM が無い場合は AX88179・AX88772・RTL8152/8153 系をベンダードライバーで接続します。それ以外のチップセットは接続できない場合があります。"
   },
   {
-    ko: "화면 하단에 배너 광고가 나올 수 있습니다. 광고 통신은 LTE·Wi‑Fi로만 나가고 USB 장비망으로는 나가지 않습니다.",
-    en: "A banner ad may appear at the bottom of the screen. Ad traffic uses LTE or Wi‑Fi only, never the USB equipment network.",
-    ja: "画面下部にバナー広告が表示されることがあります。広告通信は LTE・Wi‑Fi のみで、USB の計測ネットワークには流れません。"
+    ko: "무료 버전은 화면 아래에 배너 광고가 한 줄 나옵니다. 광고 요청은 LTE·Wi‑Fi로만 나가고 USB 장비망으로는 나가지 않습니다. 앱 안에서 광고 제거를 한 번 구매하면 그 계정에서는 배너를 요청하지 않습니다.",
+    en: "The free version shows one banner ad at the bottom of the screen. Ad requests use LTE or Wi‑Fi only, never the USB equipment network. After a one-time remove-ads purchase, the app requests no banner for that account.",
+    ja: "無料版では画面下部にバナー広告が 1 行表示されます。広告の要求は LTE・Wi‑Fi のみで、USB の計測ネットワークには流れません。アプリ内で広告の削除を一度購入すると、そのアカウントではバナーを要求しません。"
   }
 ];
 
@@ -1157,8 +1263,9 @@ const SPECS = [
   { k: { ko: "출시 국가", en: "Available in", ja: "提供地域" }, v: { ko: "대한민국 · 미국 · 일본", en: "Korea · United States · Japan", ja: "韓国・米国・日本" } },
   { k: { ko: "지원 언어", en: "Languages", ja: "対応言語" }, v: { ko: "한국어 · 영어 · 일본어", en: "Korean · English · Japanese", ja: "韓国語・英語・日本語" } },
   { k: { ko: "프로토콜", en: "Protocol", ja: "プロトコル" }, v: { ko: "Modbus TCP (FC01–FC16)", en: "Modbus TCP (FC01–FC16)", ja: "Modbus TCP（FC01–FC16）" } },
-  { k: { ko: "어댑터", en: "Adapter", ja: "アダプター" }, v: { ko: "USB-C 이더넷 (CDC-ECM)", en: "USB-C Ethernet (CDC-ECM)", ja: "USB-C イーサネット（CDC-ECM）" } },
-  { k: { ko: "가격", en: "Price", ja: "価格" }, v: { ko: "무료 · 광고 포함", en: "Free · ad-supported", ja: "無料・広告あり" } }
+  { k: { ko: "어댑터", en: "Adapter", ja: "アダプター" }, v: { ko: "USB-C 이더넷 (CDC-ECM 우선, 벤더 드라이버 포함)", en: "USB-C Ethernet (CDC-ECM first, vendor drivers)", ja: "USB-C イーサネット（CDC-ECM 優先、ベンダードライバー）" } },
+  { k: { ko: "가격", en: "Price", ja: "価格" }, v: { ko: "무료 · 하단 배너 광고", en: "Free · bottom banner ad", ja: "無料・下部バナー広告" } },
+  { k: { ko: "광고 제거", en: "Remove ads", ja: "広告の削除" }, v: { ko: "앱 내 1회 구매 · 구매 복원", en: "One-time in-app purchase · restore", ja: "アプリ内で 1 回購入・購入の復元" } }
 ];
 
 /* =====================================================================
@@ -1254,7 +1361,7 @@ function renderApps() {
 
 function renderSpotlight() {
   $("#featGrid").innerHTML = FEATURES.map((f) =>
-    '<div class="feat"><div class="ic" aria-hidden="true">' + f.icon + '</div>' +
+    '<div class="feat' + (f.wide ? " feat-wide" : "") + '"><div class="ic" aria-hidden="true">' + f.icon + '</div>' +
     '<h4>' + esc(pick(f.title, lang)) + '</h4><p>' + esc(pick(f.body, lang)) + '</p></div>'
   ).join("");
   $("#stepGrid").innerHTML = STEPS.map((s, i) =>
