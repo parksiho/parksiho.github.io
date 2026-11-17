@@ -459,11 +459,12 @@
     font-size:11.5px;color:var(--muted-2);line-height:1.6;
   }
   .price-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+  .price-grid.single{grid-template-columns:1fr}
   .price{
     border:1px solid var(--line);border-radius:14px;padding:22px 24px;
     background:rgba(255,255,255,.022);display:flex;flex-direction:column;gap:9px;
   }
-  .price.paid{
+  .price.hi{
     border-color:rgba(45,212,191,.28);
     background:linear-gradient(160deg,rgba(45,212,191,.07),rgba(255,255,255,.014) 62%);
   }
@@ -473,7 +474,7 @@
     padding:4px 9px;border-radius:999px;color:var(--muted);
     border:1px solid var(--line-strong);background:rgba(255,255,255,.03);
   }
-  .price.paid .price-tag{color:#8FEADF;border-color:var(--accent-line);background:var(--accent-soft)}
+  .price.hi .price-tag{color:#8FEADF;border-color:var(--accent-line);background:var(--accent-soft)}
   .price h4{margin:0;font-size:15px;font-weight:680;letter-spacing:-.01em;color:#EAF3FB;line-height:1.45}
   .price p{margin:0;font-size:13px;color:var(--muted);line-height:1.68}
   .price-note{margin:12px 0 0;font-size:11.5px;color:var(--muted-2);line-height:1.6}
@@ -656,7 +657,7 @@
           <div class="hero-meta">
             <span class="chip"><span class="d" aria-hidden="true"></span><span data-i18n="hero.meta1">한국 · 미국 · 일본 출시</span></span>
             <span class="chip"><span class="d" aria-hidden="true"></span><span data-i18n="hero.meta2">한국어 · 영어 · 일본어</span></span>
-            <span class="chip"><span class="d" aria-hidden="true"></span><span data-i18n="hero.meta3">무료 · 앱 안에서 광고 제거</span></span>
+            <span class="chip"><span class="d" aria-hidden="true"></span><span data-i18n="hero.meta3">무료 · 광고 포함</span></span>
           </div>
         </div>
 
@@ -791,19 +792,14 @@
           </div>
 
           <div class="subhead"><h3 data-i18n="spot.priceTitle">가격과 광고</h3><span class="rule" aria-hidden="true"></span></div>
-          <div class="price-grid">
-            <div class="price">
+          <div class="price-grid single">
+            <div class="price hi">
               <span class="price-tag" data-i18n="spot.freeTag">무료</span>
-              <h4 data-i18n="spot.freeTitle">점검 기능은 전부 무료</h4>
-              <p data-i18n="spot.freeBody">프로필, 스캔, 추세까지 모든 점검 기능을 무료로 씁니다. 화면 아래에 배너 광고가 한 줄 나오고, 광고 요청은 LTE·Wi‑Fi로만 나가 장비망으로는 가지 않습니다.</p>
-            </div>
-            <div class="price paid">
-              <span class="price-tag" data-i18n="spot.paidTag">1회 구매</span>
-              <h4 data-i18n="spot.paidTitle">광고 제거</h4>
-              <p data-i18n="spot.paidBody">앱 안에서 한 번 구매하면 이 Google 계정의 배너 광고가 사라집니다. 다시 설치하거나 다른 기기에서도 같은 계정이면 구매 복원으로 되살아납니다. 구독이 아니고, 금액은 Play 스토어가 알려 주는 현지 가격 그대로입니다.</p>
+              <h4 data-i18n="spot.freeTitle">별도 결제 없이 무료, 광고 포함</h4>
+              <p data-i18n="spot.freeBody">프로필, 스캔, 추세를 포함한 점검 기능을 모두 무료로 씁니다. 별도 결제는 없고, 화면 아래에 배너 광고가 한 줄 나옵니다. 광고 요청은 LTE·Wi‑Fi로만 나가 장비망으로는 가지 않습니다.</p>
             </div>
           </div>
-          <p class="price-note" data-i18n="spot.priceNote">표시 금액은 나라와 통화에 따라 다릅니다. 결제는 앱 안에서 Play 스토어가 보여 주는 가격으로 이뤄집니다.</p>
+          <p class="price-note" data-i18n="spot.priceNote">앱은 광고가 포함된 무료 앱으로만 배포됩니다. 별도 결제나 구매 절차가 없습니다.</p>
 
           <div class="info-grid">
             <div class="caution">
@@ -895,7 +891,7 @@ const STR = {
     "hero.cta2": "기능 살펴보기",
     "hero.meta1": "한국 · 미국 · 일본 출시",
     "hero.meta2": "한국어 · 영어 · 일본어",
-    "hero.meta3": "무료 · 앱 안에서 광고 제거",
+    "hero.meta3": "무료 · 광고 포함",
     "mock.latency": "응답",
     "mock.frames": "프레임",
     "apps.kicker": "Apps",
@@ -921,12 +917,9 @@ const STR = {
     "spot.specsTitle": "한눈에 보기",
     "spot.priceTitle": "가격과 광고",
     "spot.freeTag": "무료",
-    "spot.freeTitle": "점검 기능은 전부 무료",
-    "spot.freeBody": "프로필, 스캔, 추세를 포함한 점검 기능을 모두 무료로 씁니다. 화면 아래에 배너 광고가 한 줄 나오고, 광고 요청은 LTE·Wi‑Fi로만 나가 장비망으로는 가지 않습니다.",
-    "spot.paidTag": "1회 구매",
-    "spot.paidTitle": "광고 제거",
-    "spot.paidBody": "앱 안에서 한 번 구매하면 이 Google 계정의 배너 광고가 사라집니다. 다시 설치하거나 다른 기기에서도 같은 계정이면 구매 복원으로 되살아납니다. 구독이 아니고, 금액은 Play 스토어가 알려 주는 현지 가격 그대로입니다.",
-    "spot.priceNote": "표시 금액은 나라와 통화에 따라 다릅니다. 결제는 앱 안에서 Play 스토어가 보여 주는 가격으로 이뤄집니다.",
+    "spot.freeTitle": "별도 결제 없이 무료, 광고 포함",
+    "spot.freeBody": "프로필, 스캔, 추세를 포함한 점검 기능을 모두 무료로 씁니다. 별도 결제는 없고, 화면 아래에 배너 광고가 한 줄 나옵니다. 광고 요청은 LTE·Wi‑Fi로만 나가 장비망으로는 가지 않습니다.",
+    "spot.priceNote": "앱은 광고가 포함된 무료 앱으로만 배포됩니다. 별도 결제나 구매 절차가 없습니다.",
     "card.play": "Google Play",
     "card.privacy": "개인정보처리방침",
     "card.detail": "자세히 보기",
@@ -959,7 +952,7 @@ const STR = {
     "hero.cta2": "See what it does",
     "hero.meta1": "Available in KR · US · JP",
     "hero.meta2": "Korean · English · Japanese",
-    "hero.meta3": "Free · in-app ad removal",
+    "hero.meta3": "Free · includes ads",
     "mock.latency": "Response",
     "mock.frames": "Frames",
     "apps.kicker": "Apps",
@@ -985,12 +978,9 @@ const STR = {
     "spot.specsTitle": "At a glance",
     "spot.priceTitle": "Price and ads",
     "spot.freeTag": "Free",
-    "spot.freeTitle": "Every check, free",
-    "spot.freeBody": "Profiles, scans, trends and every other check are free. One banner ad sits at the bottom of the screen, and ad traffic uses LTE or Wi‑Fi only — never the equipment network.",
-    "spot.paidTag": "One-time",
-    "spot.paidTitle": "Remove ads",
-    "spot.paidBody": "A single in-app purchase removes the banner ad for this Google account. Reinstalling or moving to another device restores it with the same account. It is not a subscription, and the amount is the local price Google Play gives the app.",
-    "spot.priceNote": "The amount depends on country and currency. You pay the price Google Play shows inside the app.",
+    "spot.freeTitle": "Free to use, with ads",
+    "spot.freeBody": "Profiles, scans, trends and every other check are free. There is nothing to buy; one banner ad sits at the bottom of the screen. Ad traffic uses LTE or Wi‑Fi only — never the equipment network.",
+    "spot.priceNote": "The app is distributed only as a free, ad-supported app. There is nothing to buy and no payment step.",
     "card.play": "Google Play",
     "card.privacy": "Privacy Policy",
     "card.detail": "Details",
@@ -1023,7 +1013,7 @@ const STR = {
     "hero.cta2": "機能を見る",
     "hero.meta1": "韓国・米国・日本で提供",
     "hero.meta2": "韓国語・英語・日本語",
-    "hero.meta3": "無料・アプリ内で広告削除",
+    "hero.meta3": "無料・広告あり",
     "mock.latency": "応答",
     "mock.frames": "フレーム",
     "apps.kicker": "Apps",
@@ -1049,12 +1039,9 @@ const STR = {
     "spot.specsTitle": "概要",
     "spot.priceTitle": "価格と広告",
     "spot.freeTag": "無料",
-    "spot.freeTitle": "点検機能はすべて無料",
-    "spot.freeBody": "プロファイル、スキャン、推移を含む点検機能はすべて無料です。画面下部にバナー広告が 1 行表示され、広告の通信は LTE・Wi‑Fi のみで、計測ネットワークには流れません。",
-    "spot.paidTag": "1 回購入",
-    "spot.paidTitle": "広告を削除",
-    "spot.paidBody": "アプリ内で一度購入すると、この Google アカウントのバナー広告が表示されなくなります。再インストールや別の端末でも、同じアカウントなら購入の復元で戻ります。サブスクリプションではなく、金額は Google Play が示す現地価格のままです。",
-    "spot.priceNote": "表示金額は国や通貨によって異なります。お支払いは、アプリ内で Google Play が表示する価格で行われます。",
+    "spot.freeTitle": "追加の支払いなしで無料、広告あり",
+    "spot.freeBody": "プロファイル、スキャン、推移を含む点検機能はすべて無料で使えます。追加の支払いはなく、画面下部にバナー広告が 1 行表示されます。広告の通信は LTE・Wi‑Fi のみで、計測ネットワークには流れません。",
+    "spot.priceNote": "本アプリは広告付きの無料アプリとしてのみ配布しています。購入や決済の手続きはありません。",
     "card.play": "Google Play",
     "card.privacy": "プライバシーポリシー",
     "card.detail": "詳細",
@@ -1097,9 +1084,9 @@ const APPS = [
     name: { ko: "모드버스 체커", en: "Modbus Checker", ja: "Modbus Checker" },
     sub: { ko: "USB 이더넷 계측기 점검", en: "USB Ethernet instrument check", ja: "USB イーサネット計測器チェック" },
     desc: {
-      ko: "USB-C 이더넷 어댑터로 전력량계, PLC, 게이트웨이의 Modbus TCP를 점검합니다. 장비 프로필, 레지스터 별칭과 CSV, IP·국번 스캔, 추세 그래프에 ARP·Ping·TCP 확인과 FC01–FC16 읽기·쓰기, 원시 HEX 로그까지 한 화면에 담았습니다. 기본은 무료이고 앱 안에서 배너 광고를 제거할 수 있습니다.",
-      en: "Checks Modbus TCP on meters, PLCs and gateways through a USB-C Ethernet adapter: device profiles, register aliases and CSV, IP and unit scans, trend graphs, ARP and ping and TCP checks, FC01–FC16 read and write, polling and raw HEX logs in one app. Free to use, with an in-app purchase to remove the banner ad.",
-      ja: "USB-C イーサネットアダプターで電力量計、PLC、ゲートウェイの Modbus TCP を点検。機器プロファイル、レジスタ別名と CSV、IP・ユニットスキャン、推移グラフ、ARP・Ping・TCP の確認、FC01–FC16 の読み書き、生の HEX ログを 1 つの画面に。基本は無料で、アプリ内でバナー広告を削除できます。"
+      ko: "USB-C 이더넷 어댑터로 전력량계, PLC, 게이트웨이의 Modbus TCP를 점검합니다. 장비 프로필, 레지스터 별칭과 CSV, IP·국번 스캔, 추세 그래프에 ARP·Ping·TCP 확인과 FC01–FC16 읽기·쓰기, 원시 HEX 로그까지 한 화면에 담았습니다. 광고가 포함된 무료 앱입니다.",
+      en: "Checks Modbus TCP on meters, PLCs and gateways through a USB-C Ethernet adapter: device profiles, register aliases and CSV, IP and unit scans, trend graphs, ARP and ping and TCP checks, FC01–FC16 read and write, polling and raw HEX logs in one app. Free to use, with one banner ad at the bottom of the screen.",
+      ja: "USB-C イーサネットアダプターで電力量計、PLC、ゲートウェイの Modbus TCP を点検。機器プロファイル、レジスタ別名と CSV、IP・ユニットスキャン、推移グラフ、ARP・Ping・TCP の確認、FC01–FC16 の読み書き、生の HEX ログを 1 つの画面に。広告付きの無料アプリです。"
     },
     tags: ["Android", "Modbus TCP", "Profiles · CSV", "KO · EN · JA"],
     play: "https://play.google.com/store/apps/details?id=com.emsfield.fieldtester",
@@ -1252,9 +1239,9 @@ const CAUTIONS = [
     ja: "CDC-ECM アダプターを優先し、ECM が無い場合は AX88179・AX88772・RTL8152/8153 系をベンダードライバーで接続します。それ以外のチップセットは接続できない場合があります。"
   },
   {
-    ko: "무료 버전은 화면 아래에 배너 광고가 한 줄 나옵니다. 광고 요청은 LTE·Wi‑Fi로만 나가고 USB 장비망으로는 나가지 않습니다. 앱 안에서 광고 제거를 한 번 구매하면 그 계정에서는 배너를 요청하지 않습니다.",
-    en: "The free version shows one banner ad at the bottom of the screen. Ad requests use LTE or Wi‑Fi only, never the USB equipment network. After a one-time remove-ads purchase, the app requests no banner for that account.",
-    ja: "無料版では画面下部にバナー広告が 1 行表示されます。広告の要求は LTE・Wi‑Fi のみで、USB の計測ネットワークには流れません。アプリ内で広告の削除を一度購入すると、そのアカウントではバナーを要求しません。"
+    ko: "앱은 화면 아래에 배너 광고가 한 줄 나옵니다. 광고 요청은 LTE·Wi‑Fi로만 나가고 USB 장비망으로는 나가지 않습니다.",
+    en: "The app shows one banner ad at the bottom of the screen. Ad requests use LTE or Wi‑Fi only, never the USB equipment network.",
+    ja: "アプリでは画面下部にバナー広告が 1 行表示されます。広告の要求は LTE・Wi‑Fi のみで、USB の計測ネットワークには流れません。"
   }
 ];
 
@@ -1264,8 +1251,7 @@ const SPECS = [
   { k: { ko: "지원 언어", en: "Languages", ja: "対応言語" }, v: { ko: "한국어 · 영어 · 일본어", en: "Korean · English · Japanese", ja: "韓国語・英語・日本語" } },
   { k: { ko: "프로토콜", en: "Protocol", ja: "プロトコル" }, v: { ko: "Modbus TCP (FC01–FC16)", en: "Modbus TCP (FC01–FC16)", ja: "Modbus TCP（FC01–FC16）" } },
   { k: { ko: "어댑터", en: "Adapter", ja: "アダプター" }, v: { ko: "USB-C 이더넷 (CDC-ECM 우선, 벤더 드라이버 포함)", en: "USB-C Ethernet (CDC-ECM first, vendor drivers)", ja: "USB-C イーサネット（CDC-ECM 優先、ベンダードライバー）" } },
-  { k: { ko: "가격", en: "Price", ja: "価格" }, v: { ko: "무료 · 하단 배너 광고", en: "Free · bottom banner ad", ja: "無料・下部バナー広告" } },
-  { k: { ko: "광고 제거", en: "Remove ads", ja: "広告の削除" }, v: { ko: "앱 내 1회 구매 · 구매 복원", en: "One-time in-app purchase · restore", ja: "アプリ内で 1 回購入・購入の復元" } }
+  { k: { ko: "가격", en: "Price", ja: "価格" }, v: { ko: "무료 · 하단 배너 광고", en: "Free · bottom banner ad", ja: "無料・下部バナー広告" } }
 ];
 
 /* =====================================================================
