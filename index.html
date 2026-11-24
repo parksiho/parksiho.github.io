@@ -1084,11 +1084,11 @@ const APPS = [
     name: { ko: "모드버스 체커", en: "Modbus Checker", ja: "Modbus Checker" },
     sub: { ko: "USB 이더넷 계측기 점검", en: "USB Ethernet instrument check", ja: "USB イーサネット計測器チェック" },
     desc: {
-      ko: "USB-C 이더넷 어댑터로 전력량계, PLC, 게이트웨이의 Modbus TCP를 점검합니다. 장비 프로필, 레지스터 별칭과 CSV, IP·국번 스캔, 추세 그래프에 ARP·Ping·TCP 확인과 FC01–FC16 읽기·쓰기, 원시 HEX 로그까지 한 화면에 담았습니다. 광고가 포함된 무료 앱입니다.",
-      en: "Checks Modbus TCP on meters, PLCs and gateways through a USB-C Ethernet adapter: device profiles, register aliases and CSV, IP and unit scans, trend graphs, ARP and ping and TCP checks, FC01–FC16 read and write, polling and raw HEX logs in one app. Free to use, with one banner ad at the bottom of the screen.",
-      ja: "USB-C イーサネットアダプターで電力量計、PLC、ゲートウェイの Modbus TCP を点検。機器プロファイル、レジスタ別名と CSV、IP・ユニットスキャン、推移グラフ、ARP・Ping・TCP の確認、FC01–FC16 の読み書き、生の HEX ログを 1 つの画面に。広告付きの無料アプリです。"
+      ko: "USB-C 이더넷 어댑터로 전력량계, PLC, 게이트웨이의 Modbus TCP를 점검합니다. 장비 프로필, 레지스터 별칭과 CSV, IP·국번 스캔, 읽기 전용 장비 자동 스캔, 추세 그래프에 ARP·Ping·TCP 확인과 FC01–FC16 읽기·쓰기, 통신 진단, 사진으로 별칭 가져오기, 원시 HEX 로그까지 한 화면에 담았습니다. 광고가 포함된 무료 앱입니다.",
+      en: "Checks Modbus TCP on meters, PLCs and gateways through a USB-C Ethernet adapter: device profiles, register aliases and CSV, IP and unit scans, a read-only equipment auto-scan, trend graphs, ARP and ping and TCP checks, FC01–FC16 read and write, link diagnosis, aliases read from a photo, polling and raw HEX logs in one app. Free to use, with one banner ad at the bottom of the screen.",
+      ja: "USB-C イーサネットアダプターで電力量計、PLC、ゲートウェイの Modbus TCP を点検。機器プロファイル、レジスタ別名と CSV、IP・ユニットスキャン、読み取り専用の機器自動スキャン、推移グラフ、ARP・Ping・TCP の確認、FC01–FC16 の読み書き、通信診断、写真からの別名読み込み、生の HEX ログを 1 つの画面に。広告付きの無料アプリです。"
     },
-    tags: ["Android", "Modbus TCP", "Profiles · CSV", "KO · EN · JA"],
+    tags: ["Android", "Modbus TCP", "Auto-scan", "Profiles · CSV", "KO · EN · JA"],
     play: "https://play.google.com/store/apps/details?id=com.emsfield.fieldtester",
     policy: "/mc-privacy-policy.md",
     icon: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#5EEAD4" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="12" rx="2"/><path d="M8 20h8M12 16v4M8 8h3M8 12h6"/><circle cx="16.5" cy="8" r="1" fill="#2DD4BF" stroke="none"/></svg>'
@@ -1172,12 +1172,49 @@ const FEATURES = [
     }
   },
   {
+    icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M4 17l5-5 4 4 3-3 4 4"/></svg>',
+    title: { ko: "사진으로 별칭 가져오기", en: "Aliases from a photo", ja: "写真から別名を読み込む" },
+    body: {
+      ko: "장비 사양서나 계기 표를 카메라로 찍거나 갤러리에서 고르면, 앱에 들어 있는 글자 인식 모델이 주소·이름·단위·형식·스케일을 읽어 냅니다. 미리보기에서 고치고 확인한 뒤에야 별칭으로 저장되고, 사진은 폰 안에서만 읽은 뒤 지우며 개발자 서버나 광고 쪽으로 보내지 않습니다.",
+      en: "Photograph a meter label or a spec table, or pick one from the gallery, and the recognition model inside the app reads it into addresses, names, units, types and scales. You fix and confirm them in a preview before they are saved as aliases; the photo is read only on the phone, then deleted, and is never sent to a developer server or to ads.",
+      ja: "メーターの表示や仕様表をカメラで撮るかギャラリーから選ぶと、アプリ内蔵の文字認識モデルがアドレス・名前・単位・形式・スケールを読み取ります。プレビューで直して確認したものだけが別名として保存され、写真は端末内で読んだあと削除し、開発者のサーバーや広告には送りません。"
+    }
+  },
+  {
     icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 7a5 5 0 1 0 5 5"/><path d="M12 12l6.5-6.5"/></svg>',
     title: { ko: "IP·국번 스캔", en: "IP and unit number scan", ja: "IP・ユニット番号スキャン" },
     body: {
       ko: "장비 IP를 모를 때 앱 IP와 프리픽스로 잡은 서브넷에서 TCP 502가 열린 장비를 찾고, 국번은 1–247을 가벼운 읽기로 물어봅니다. 결과를 누르면 입력칸에 들어갑니다. 스캔도 앱의 네트워크 스택 안에서만 돌고, 중간에 취소할 수 있습니다.",
       en: "When you do not know the device address, scan the subnet set by the app IP and prefix for hosts with TCP 502 open, and probe unit numbers 1–247 with light reads. Tap a result to fill the field. The scan runs only inside the app's own network stack and can be cancelled.",
       ja: "機器の IP が分からないときは、アプリ IP とプレフィックスで決まるサブネットから TCP 502 が開いた機器を探し、ユニット番号は 1–247 を軽い読み取りで確認します。結果を押すと入力欄に入ります。スキャンはアプリ内のネットワークスタックだけで動き、途中で中止できます。"
+    }
+  },
+  {
+    icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.4"/><path d="M12 3.6a8.4 8.4 0 0 1 8.4 8.4M12 7.2a4.8 4.8 0 0 1 4.8 4.8M12 20.4a8.4 8.4 0 0 1-8.4-8.4M12 16.8a4.8 4.8 0 0 1-4.8-4.8"/></svg>',
+    wide: true,
+    title: { ko: "장비 자동 스캔 (읽기 전용)", en: "Equipment auto-scan (read-only)", ja: "機器自動スキャン（読み取り専用）" },
+    body: {
+      ko: "장비 서브넷에서 TCP 502가 열린 주소와 Unit ID 1–247을 차례로 찾고, 통신 문서(제조사·모델·식별 레지스터·전압·주파수 주소)를 기준으로 모델과 전압·주파수, 바이트 순서를 추정합니다. 보내는 요청은 FC03·04·43 읽기뿐이라 장비 상태를 바꾸지 않고, 결과는 CSV·XLSX·PDF 보고서로 내보냅니다. Moxa UDP 4800 검색은 선택입니다.",
+      en: "Walks the equipment subnet for hosts with TCP 502 open and probes Unit IDs 1–247, then uses a register map — manufacturer, model, ID registers, voltage and frequency addresses — to estimate the model, voltage, frequency and byte order. Only FC03, 04 and 43 reads are sent, so nothing on the device changes, and the results export as a CSV, XLSX or PDF report. Moxa discovery over UDP 4800 is optional.",
+      ja: "機器サブネットで TCP 502 が開いたアドレスと Unit ID 1〜247 を順に探し、通信文書（メーカー・型式・識別レジスタ・電圧・周波数アドレス）をもとに型式・電圧・周波数・バイト順を推定します。送る要求は FC03・04・43 の読み取りだけなので機器の状態は変わりません。結果は CSV・XLSX・PDF の報告書に書き出せ、Moxa の UDP 4800 検索は任意です。"
+    }
+  },
+  {
+    icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.4 9.1a2.7 2.7 0 1 1 3.7 2.5c-.7.3-1.1 1-1.1 1.8v.4"/><circle cx="12" cy="17.2" r=".7" fill="currentColor" stroke="none"/></svg>',
+    title: { ko: "막혔을 때 원인 짚기", en: "A cause when you are stuck", ja: "行き詰まったときの原因表示" },
+    body: {
+      ko: "타임아웃, 연결 거부, Modbus 예외 01–0B, 프레임 불일치가 나오면 그 오류 줄의 '가능한 원인'에서 무엇을 확인할지 봅니다. 40001과 0 기준 주소, 40000 오프바이원, Unit ID, 레지스터 개수 한도를 숫자로 짚어 주고, 32·64비트 값이 이상하면 'CDAB 순서일 가능성' 같은 힌트 한 줄을 눌러 그 순서로 다시 읽습니다. 진단은 오프라인으로 폰 안에서만 계산합니다.",
+      en: "On a timeout, a refused connection, Modbus exception 01–0B or a frame mismatch, open Likely causes on that error line to see what to check: 40001 versus zero-based addresses, the 40000 off-by-one, unit IDs and the register-count limit, all written as numbers. If a 32- or 64-bit value looks wrong, a one-line hint such as \"CDAB may be the order\" re-reads it in that order. Diagnosis runs offline on the phone only.",
+      ja: "タイムアウト、接続拒否、Modbus 例外 01〜0B、フレーム不一致が出たら、そのエラー行の「考えられる原因」を開いて確認事項を見ます。40001 と 0 基準のアドレス、40000 のオフバイワン、Unit ID、レジスタ個数の上限を数字で示し、32・64 ビット値が不自然なら「CDAB の順の可能性」のようなヒント 1 行を押すとその順で読み直します。診断はオフラインで端末内だけを行い、サーバーには送りません。"
+    }
+  },
+  {
+    icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="3.4" rx="1"/><path d="M9 4.7H6.6a1.4 1.4 0 0 0-1.4 1.4v13.8a1.4 1.4 0 0 0 1.4 1.4h10.8a1.4 1.4 0 0 0 1.4-1.4V6.1a1.4 1.4 0 0 0-1.4-1.4H15"/><path d="M8.8 12h6.4M8.8 16h4.4"/></svg>',
+    title: { ko: "점검 결과 요약 복사", en: "Summary copy for reports", ja: "点検結果の要約コピー" },
+    body: {
+      ko: "내보내기 메뉴의 '요약 복사'가 대상 IP·포트·Unit, 프로필 이름, 시간 범위, 요청 수, 성공률, 응답 평균·최소·최대, 오류 종류, 레지스터별 최신·최소·최대·평균을 한 번에 복사합니다. 카톡이나 보고서에 그대로 붙이면 되고, 별칭에 최소·최대가 있으면 범위를 벗어난 값에 '범위 초과'가 붙습니다.",
+      en: "Copy summary in the export menu puts the target IP, port and unit, the profile name, the time range, the request count, success rate, average, minimum and maximum response times, error kinds and each register's latest, low, high and average on the clipboard in one go. Paste it into a chat or a report as it is; when an alias carries a minimum and maximum, values outside them are marked out of range.",
+      ja: "書き出しメニューの「要約をコピー」は、対象 IP・ポート・Unit、プロファイル名、時間範囲、要求数、成功率、応答の平均・最小・最大、エラー種別、レジスタごとの最新・最小・最大・平均をまとめてコピーします。チャットや報告書にそのまま貼れ、別名に最小・最大があれば範囲外の値に「範囲外」が付きます。"
     }
   },
   {
@@ -1220,9 +1257,9 @@ const STEPS = [
   {
     title: { ko: "상대 장비 정보 입력 후 통신", en: "Enter the target device, then communicate", ja: "相手機器を入力して通信" },
     body: {
-      ko: "상대 장비 IP, 포트(기본 502), 국번(Unit ID)을 입력하고 Ping·ARP·포트 점검으로 연결을 확인합니다. IP나 국번을 모르면 IP 스캔·국번 스캔으로 찾아 누릅니다. 이어서 Modbus TCP 요청을 보내 응답과 값을 바로 확인합니다.",
-      en: "Enter the target IP, port (502 by default) and unit ID, then check the link with ping, ARP and port tests. If you do not know them, the IP and unit scans find them and fill the fields when you tap a result. Then send Modbus TCP requests and read the response and values on the spot.",
-      ja: "相手機器の IP、ポート（既定 502）、ユニット ID を入力し、Ping・ARP・ポート確認で接続をチェックします。分からない場合は IP スキャン・ユニットスキャンで見つけて押します。続けて Modbus TCP 要求を送り、応答と値をその場で確認できます。"
+      ko: "상대 장비 IP, 포트(기본 502), 국번(Unit ID)을 입력하고 Ping·ARP·포트 점검으로 연결을 확인합니다. IP나 국번을 모르면 IP 스캔·국번 스캔으로 찾아 누릅니다. 이어서 Modbus TCP 요청을 보내 응답과 값을 바로 확인합니다. 여러 대를 한 번에 훑어야 할 때는 장비 자동 스캔을 씁니다.",
+      en: "Enter the target IP, port (502 by default) and unit ID, then check the link with ping, ARP and port tests. If you do not know them, the IP and unit scans find them and fill the fields when you tap a result. Then send Modbus TCP requests and read the response and values on the spot. To sweep a whole cabinet at once, use the equipment auto-scan.",
+      ja: "相手機器の IP、ポート（既定 502）、ユニット ID を入力し、Ping・ARP・ポート確認で接続をチェックします。分からない場合は IP スキャン・ユニットスキャンで見つけて押します。続けて Modbus TCP 要求を送り、応答と値をその場で確認できます。複数台をまとめて確認するときは機器自動スキャンを使います。"
     }
   }
 ];
@@ -1242,6 +1279,11 @@ const CAUTIONS = [
     ko: "앱은 화면 아래에 배너 광고가 한 줄 나옵니다. 광고 요청은 LTE·Wi‑Fi로만 나가고 USB 장비망으로는 나가지 않습니다.",
     en: "The app shows one banner ad at the bottom of the screen. Ad requests use LTE or Wi‑Fi only, never the USB equipment network.",
     ja: "アプリでは画面下部にバナー広告が 1 行表示されます。広告の要求は LTE・Wi‑Fi のみで、USB の計測ネットワークには流れません。"
+  },
+  {
+    ko: "장비 자동 스캔은 읽기 전용입니다. FC03, FC04, FC43만 보내고 쓰기 기능 코드는 보내지 않습니다.",
+    en: "Equipment auto-scan is read-only. It sends only FC03, FC04 and FC43, and no write function codes.",
+    ja: "機器自動スキャンは読み取り専用です。FC03・FC04・FC43 だけを送り、書き込みの機能コードは送りません。"
   }
 ];
 
@@ -1249,7 +1291,7 @@ const SPECS = [
   { k: { ko: "플랫폼", en: "Platform", ja: "プラットフォーム" }, v: { ko: "Android", en: "Android", ja: "Android" } },
   { k: { ko: "출시 국가", en: "Available in", ja: "提供地域" }, v: { ko: "대한민국 · 미국 · 일본", en: "Korea · United States · Japan", ja: "韓国・米国・日本" } },
   { k: { ko: "지원 언어", en: "Languages", ja: "対応言語" }, v: { ko: "한국어 · 영어 · 일본어", en: "Korean · English · Japanese", ja: "韓国語・英語・日本語" } },
-  { k: { ko: "프로토콜", en: "Protocol", ja: "プロトコル" }, v: { ko: "Modbus TCP (FC01–FC16)", en: "Modbus TCP (FC01–FC16)", ja: "Modbus TCP（FC01–FC16）" } },
+  { k: { ko: "프로토콜", en: "Protocol", ja: "プロトコル" }, v: { ko: "Modbus TCP (FC01–FC16, 자동 스캔은 FC03·04·43 읽기 전용)", en: "Modbus TCP (FC01–FC16; auto-scan reads FC03, 04, 43)", ja: "Modbus TCP（FC01–FC16、自動スキャンは FC03・04・43 の読み取りのみ）" } },
   { k: { ko: "어댑터", en: "Adapter", ja: "アダプター" }, v: { ko: "USB-C 이더넷 (CDC-ECM 우선, 벤더 드라이버 포함)", en: "USB-C Ethernet (CDC-ECM first, vendor drivers)", ja: "USB-C イーサネット（CDC-ECM 優先、ベンダードライバー）" } },
   { k: { ko: "가격", en: "Price", ja: "価格" }, v: { ko: "무료 · 하단 배너 광고", en: "Free · bottom banner ad", ja: "無料・下部バナー広告" } }
 ];

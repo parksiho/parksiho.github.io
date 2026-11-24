@@ -1,6 +1,6 @@
 # 개인정보처리방침 / Privacy Policy
 
-시행일 / Effective date: 2026.11.17
+시행일 / Effective date: 2026.11.24
 
 ---
 
@@ -17,6 +17,8 @@
 - 이용자가 입력한 레지스터 값
 
 Modbus 통신과 장비 데이터는 폰과 USB 어댑터 사이의 현장에서 끝나며, 개발자가 수집하지 않습니다. 앱을 지우거나 앱 저장소를 삭제하면 이 데이터도 폰에서 지워집니다.
+
+프로필을 사진으로 가져올 때, 이용자가 고른 사진이나 카메라 앱으로 찍은 표는 폰 안에서만 글자로 읽습니다. 인식 모델은 앱에 들어 있고, 사진을 개발자 서버나 광고 네트워크로 보내지 않습니다. 인식이 끝나면 임시 사진 파일은 지우고, 확인한 주소·이름·단위만 기기 안의 프로필로 남습니다.
 
 ### 광고 (AdMob) 와 광고 ID
 
@@ -68,6 +70,8 @@ The following stays on the phone and is not sent to a developer server:
 - Register values you type
 
 Modbus traffic and equipment data remain on the link between the phone and the USB adapter. The developer does not collect them. Uninstalling the app or clearing its storage removes this data from the phone.
+
+When you import a profile from a photo, the picture you pick or take is read as text only on the phone. The recognition model is part of the app. The picture is not sent to a developer server or to the ad network. After recognition, the temporary photo file is deleted. Only the address, name, and unit you confirm stay in the on-device profile.
 
 ### Advertising (AdMob) and the advertising ID
 
